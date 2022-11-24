@@ -2,61 +2,68 @@ package com.yaroshevich.app.model;
 
 public class Employee {
 
-    private long id;
+    private final long id;
 
-    private String firstName;
+    private final String firstName;
 
-    private String secondName;
+    private final String secondName;
 
-    private String patronymic;
+    private final String patronymic;
 
-    private int age;
+    private final int age;
 
-    public Employee(long id, String firstName, String secondName, String patronymic, int age) {
+    private final int addressId;
+
+    private final int shiftId;
+
+    public Employee(long id, String firstName, String secondName, String patronymic, int age, int addressId, int shiftId) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
         this.age = age;
+        this.addressId = addressId;
+        this.shiftId = shiftId;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getSecondName() {
         return secondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
     public String getPatronymic() {
         return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public int getAddressId() {
+        return addressId;
+    }
+
+    public int getShiftId() {
+        return shiftId;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", age=" + age +
+                ", addressId=" + addressId +
+                ", shiftId=" + shiftId +
+                '}';
     }
 }
