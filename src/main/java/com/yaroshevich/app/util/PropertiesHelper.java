@@ -1,7 +1,5 @@
 package com.yaroshevich.app.util;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -9,11 +7,9 @@ public class PropertiesHelper {
 
     public static Properties properties = new Properties();
 
-    public PropertiesHelper() {
-        File propsFile = new File("app.properties");
-
+    static {
         try {
-            properties.load(new FileReader(propsFile));
+            properties.load(PropertiesHelper.class.getResourceAsStream("/app.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
