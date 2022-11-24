@@ -15,8 +15,9 @@ public class EmployeeDao {
 
     public List<Employee> getAll() throws SQLException {
         DBWorker dbWorker = new DBWorker(connection);
+        EmployeeMapper mapper = new EmployeeMapper();
 
-        return EmployeeMapper.map(dbWorker.executeQuery("SELECT * FROM employees"));
+        return mapper.map(dbWorker.executeQuery("SELECT * FROM employees"));
     }
 
 }

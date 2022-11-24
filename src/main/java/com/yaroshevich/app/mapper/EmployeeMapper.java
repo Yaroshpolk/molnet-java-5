@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeMapper {
+public class EmployeeMapper implements Mapper<Employee> {
 
-    public static List<Employee> map(ResultSet resultSet) throws SQLException {
+    public List<Employee> map(ResultSet resultSet) throws SQLException {
         List<Employee> list = new ArrayList<>();
 
         while (resultSet.next()) {
