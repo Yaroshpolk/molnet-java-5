@@ -2,12 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Тестовое задание</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+    <div class="container">
+        <h1 class="title">Список сотрудников</h1>
+        <div class="employees">
+            <ul class="employees__list">
+                <li class="employees__item">
+                    1
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
