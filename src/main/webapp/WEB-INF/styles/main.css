@@ -1,0 +1,46 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: Calibri;
+}
+
+.employees {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.employees__list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
+
+.employees__item {
+    width: auto;
+    border-bottom: 1px solid rgba(223, 226, 226, 0.6);
+    margin: 5px 10px;
+}
+
+.employees__title {
+    background-color: #05386B;
+    color: #fff;
+    text-align: center;
+    font-size: 21px;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 5px 20px;
+}
+
+.employees__link {
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+    transition: opacity .2s ease-in-out;
+}
+
+.employees__link:hover {
+    opacity: .7;
+}

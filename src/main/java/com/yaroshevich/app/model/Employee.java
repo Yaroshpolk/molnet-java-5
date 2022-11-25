@@ -12,18 +12,18 @@ public class Employee {
 
     private final int age;
 
-    private final int addressId;
+    private final Address address;
 
-    private final int shiftId;
+    private final Shift shift;
 
-    public Employee(long id, String firstName, String secondName, String patronymic, int age, int addressId, int shiftId) {
+    public Employee(long id, String firstName, String secondName, String patronymic, int age, Address address, Shift shift) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
         this.age = age;
-        this.addressId = addressId;
-        this.shiftId = shiftId;
+        this.address = address;
+        this.shift = shift;
     }
 
     public long getId() {
@@ -46,12 +46,12 @@ public class Employee {
         return age;
     }
 
-    public int getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public int getShiftId() {
-        return shiftId;
+    public Shift getShift() {
+        return shift;
     }
 
     @Override
@@ -62,8 +62,8 @@ public class Employee {
                 ", secondName='" + secondName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", age=" + age +
-                ", addressId=" + addressId +
-                ", shiftId=" + shiftId +
+                ", address=" + address +
+                ", shift=" + shift +
                 '}';
     }
 }

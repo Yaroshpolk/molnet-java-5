@@ -1,19 +1,35 @@
+<%@ page import="com.yaroshevich.app.dto.EmployeeDto" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Тестовое задание</title>
+    <meta charset="UTF-8">
+    <title>Тестовое задание № 5</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Список сотрудников</h1>
-        <div class="employees">
-            <ul class="employees__list">
-                <li class="employees__item">
-                    1
-                </li>
-            </ul>
-        </div>
+<style>
+    <%@include file="/WEB-INF/styles/main.css" %>
+</style>
+<div class="content">
+    <div class="employees">
+        <p class="employees__title">Список сотрудников</p>
+        <ul class="employees__list">
+            <%
+                for (EmployeeDto employee : (ArrayList<EmployeeDto>) request.getAttribute("employees")) {
+                    out.println(
+                            "<li class='employees__item'>"
+                                    + "<a href='" + employee.getId() + "' class='employees__link'>"
+                                    + employee.getSecondName() + " "
+                                    + employee.getFirstName() + " "
+                                    + employee.getPatronymic() + "</a>" +
+                                    "</li>");
+                }
+            %>
+        </ul>
     </div>
+</div>
+
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.yaroshevich.app.dao;
 
-import com.yaroshevich.app.dto.EmployeeDto;
 import com.yaroshevich.app.mapper.EmployeeMapper;
 import com.yaroshevich.app.model.Employee;
 import com.yaroshevich.app.util.DBWorker;
@@ -21,14 +20,7 @@ public class EmployeeDao implements Dao<Employee> {
         DBWorker dbWorker = new DBWorker(connection);
         EmployeeMapper mapper = new EmployeeMapper();
 
-        return mapper.map(dbWorker.executeQuery("SELECT * FROM employees"));
-    }
-
-    public List<EmployeeDto> getAllWithDetails() throws SQLException {
-        DBWorker dbWorker = new DBWorker(connection);
-        EmployeeMapper mapper = new EmployeeMapper();
-
-        return mapper.mapWithDetails(dbWorker.executeQuery("SELECT employees.id as employee_id, first_name, last_name," +
+        return mapper.map(dbWorker.executeQuery("SELECT employees.id as employee_id, first_name, last_name," +
                 " patronymic, age, ha.id as address_id, ha.address, ha.district, ha.region, s.id as shift_id, " +
                 "s.start_at, s.end_at FROM employees\n" +
                 "LEFT JOIN home_addresses ha on ha.id = employees.address_id\n" +

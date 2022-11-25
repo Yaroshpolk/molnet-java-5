@@ -1,7 +1,7 @@
 package com.yaroshevich.app.service;
 
 import com.yaroshevich.app.dao.EmployeeDao;
-import com.yaroshevich.app.dto.EmployeeDto;
+import com.yaroshevich.app.model.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,8 +14,8 @@ public class EmployeeService {
         this.employeeDao = employeeDao;
     }
 
-    public List<EmployeeDto> getAllWithDetails() throws SQLException {
-        return employeeDao.getAllWithDetails();
+    public List<Employee> getAll() throws SQLException {
+        return employeeDao.getAll();
     }
 
 }
