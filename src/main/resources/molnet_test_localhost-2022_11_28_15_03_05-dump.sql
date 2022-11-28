@@ -159,6 +159,9 @@ COPY public.employees (id, first_name, last_name, patronymic, age, address_id, s
 1	Максим	Жигало	Эдуардович	30	1	1
 2	Александр	Астафьев	Александрович	32	2	2
 3	Владислав	Жириновский	Витальевич	25	3	3
+4	Александр	Бобров	Александрович	22	2	1
+5	Кирилл	Чернов	Алексеевич	23	1	3
+6	Владислав	Жигало	Витальевич	21	3	1
 \.
 
 
@@ -190,7 +193,7 @@ COPY public.shifts (id, start_at, end_at) FROM stdin;
 -- Name: employees_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.employees_id_seq', 3, true);
+SELECT pg_catalog.setval('public.employees_id_seq', 6, true);
 
 
 --
