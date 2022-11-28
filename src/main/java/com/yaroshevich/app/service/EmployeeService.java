@@ -4,6 +4,7 @@ import com.yaroshevich.app.dao.EmployeeDao;
 import com.yaroshevich.app.model.Employee;
 
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 
 public class EmployeeService {
@@ -15,7 +16,12 @@ public class EmployeeService {
     }
 
     public List<Employee> getAll() throws SQLException {
-        return employeeDao.getAll();
+        List<Employee> result = employeeDao.getAll();
+
+        result.sort(Comparator.comparing(Employee::getSecondName).thenComparing(Employee::getFirstName)
+                .thenComparing(Employee::getPatronymic));
+
+        return result;
     }
 
     public Employee getById(int id) throws SQLException {
