@@ -12,8 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "MainServlet", value = "/")
@@ -27,13 +25,7 @@ public class MainServlet extends HttpServlet {
 
         EmployeeService employeeService = new EmployeeService(employeeDao);
 
-        List<Employee> employees = new ArrayList<>();
-
-        try {
-            employees = employeeService.getAll();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        List<Employee> employees = employeeService.getAll();
 
         request.setAttribute("employees", employees);
 

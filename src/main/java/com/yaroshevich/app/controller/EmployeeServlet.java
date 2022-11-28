@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet(name = "EmployeeServlet", value = "/employee")
 public class EmployeeServlet extends HttpServlet {
@@ -25,15 +24,10 @@ public class EmployeeServlet extends HttpServlet {
 
         EmployeeService employeeService = new EmployeeService(employeeDao);
 
-        Employee employee = null;
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        try {
-            employee = employeeService.getById(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Employee employee = employeeService.getById(id);
 
         request.setAttribute("employee", employee);
 
