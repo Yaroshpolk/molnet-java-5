@@ -1,5 +1,5 @@
-<%@ page import="com.yaroshevich.app.dto.EmployeeDto" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.yaroshevich.app.model.Employee" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -17,10 +17,10 @@
         <p class="employees__title">Список сотрудников</p>
         <ul class="employees__list">
             <%
-                for (EmployeeDto employee : (ArrayList<EmployeeDto>) request.getAttribute("employees")) {
+                for (Employee employee : (ArrayList<Employee>) request.getAttribute("employees")) {
                     out.println(
                             "<li class='employees__item'>"
-                                    + "<a href='" + employee.getId() + "' class='employees__link'>"
+                                    + "<a href='/employee?id=" + employee.getId() + "' class='employees__link'>"
                                     + employee.getSecondName() + " "
                                     + employee.getFirstName() + " "
                                     + employee.getPatronymic() + "</a>" +

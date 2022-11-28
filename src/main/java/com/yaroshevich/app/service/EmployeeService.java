@@ -18,4 +18,8 @@ public class EmployeeService {
         return employeeDao.getAll();
     }
 
+    public Employee getById(int id) throws SQLException {
+        return employeeDao.getById(id);
+    }
+
 }

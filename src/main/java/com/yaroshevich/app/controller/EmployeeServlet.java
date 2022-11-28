@@ -13,8 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "EmployeeServlet", value = "/employee")
 public class EmployeeServlet extends HttpServlet {
@@ -27,17 +25,19 @@ public class EmployeeServlet extends HttpServlet {
 
         EmployeeService employeeService = new EmployeeService(employeeDao);
 
-        List<Employee> employees = new ArrayList<>();
+        Employee employee = null;
+
+        int id = Integer.parseInt(request.getParameter("id"));
 
         try {
-            employees = employeeService.getAll();
+            employee = employeeService.getById(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        request.setAttribute("employees", employees);
+        request.setAttribute("employee", employee);
 
-        request.getRequestDispatcher("/view/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/profile.jsp").forward(request, response);
 
     }
 }

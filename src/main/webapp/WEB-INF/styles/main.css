@@ -1,14 +1,30 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .content {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     font-family: Calibri;
+    height: 100%;
 }
 
 .employees {
-    width: 100%;
+    width: 50%;
+    max-height: 60%;
     border-radius: 4px;
     overflow: hidden;
+    -webkit-box-shadow: 0px 0px 23px 1px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 23px 1px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 23px 1px rgba(34, 60, 80, 0.2);
 }
 
 .employees__list {
@@ -22,6 +38,7 @@
     width: auto;
     border-bottom: 1px solid rgba(223, 226, 226, 0.6);
     margin: 5px 10px;
+    transition: opacity .2s ease-in-out, border-bottom-color .2s ease-in-out;
 }
 
 .employees__title {
@@ -38,9 +55,9 @@
     font-size: 18px;
     text-decoration: none;
     color: #000;
-    transition: opacity .2s ease-in-out;
 }
 
-.employees__link:hover {
+.employees__item:hover {
     opacity: .7;
+    border-bottom: 1px solid rgba(5, 56, 107, 0.7);
 }

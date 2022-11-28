@@ -7,4 +7,5 @@ public interface Dao<T> {
 
     List<T> getAll() throws SQLException;
 
+    T getById(int id) throws SQLException;
 }

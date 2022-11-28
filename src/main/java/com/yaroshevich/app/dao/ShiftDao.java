@@ -3,10 +3,10 @@ package com.yaroshevich.app.dao;
 import com.yaroshevich.app.mapper.ShiftMapper;
 import com.yaroshevich.app.model.Shift;
 import com.yaroshevich.app.util.DBConnector;
-import com.yaroshevich.app.util.DBWorker;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class ShiftDao implements Dao<Shift> {
@@ -15,9 +15,14 @@ public class ShiftDao implements Dao<Shift> {
 
     @Override
     public List<Shift> getAll() throws SQLException {
-        DBWorker dbWorker = new DBWorker(connection);
+        Statement statement = connection.createStatement();
         ShiftMapper mapper = new ShiftMapper();
 
-        return mapper.map(dbWorker.executeQuery("SELECT * FROM shifts"));
+        return mapper.map(statement.executeQuery("SELECT * FROM shifts"));
+    }
+
+    @Override
+    public Shift getById(int id) throws SQLException {
+        return null;
     }
 }
