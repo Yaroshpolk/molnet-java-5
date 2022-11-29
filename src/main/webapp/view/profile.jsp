@@ -11,20 +11,24 @@
 <style>
     <%@include file="/WEB-INF/styles/profile.css" %>
 </style>
-<% Employee employee = (Employee) request.getAttribute("employee"); %>
+<%
+    Employee employee = (Employee) request.getAttribute("employee");
+
+    String name = employee.getSecondName() + " " + employee.getFirstName() + " " + employee.getPatronymic();
+    String address = employee.getAddress().getAddress() + ", "
+            + employee.getAddress().getDistrict() + ", " + employee.getAddress().getRegion();
+    String shift = employee.getShift().getStart() + " - " + employee.getShift().getEnd();
+%>
 <div class="content">
     <div class="profile">
         <div class="profile__avatar">
             <p class="profile__avatar-txt">Фото</p>
         </div>
         <div class="profile__info">
-            <p class="profile__name"><% out.println(employee.getSecondName() + " " + employee.getFirstName()
-                    + " " + employee.getPatronymic());%></p>
+            <p class="profile__name"><% out.println(name);%></p>
             <ul class="profile__list">
-                <li class="profile__item">Адрес: <% out.println(employee.getAddress().getAddress() + ", "
-                        + employee.getAddress().getDistrict() + ", " + employee.getAddress().getRegion());%></li>
-                <li class="profile__item">Режим работы: <% out.println(employee.getShift().getStart() + " - "
-                        + employee.getShift().getEnd());%></li>
+                <li class="profile__item">Адрес: <% out.println(address);%></li>
+                <li class="profile__item">Режим работы: <% out.println(shift);%></li>
             </ul>
         </div>
     </div>
