@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "MainServlet", value = "/app/")
@@ -19,17 +20,21 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Connection connection = new DBConnector().getConnection();
+        try (Connection connection = new DBConnector().getConnection();){
 
-        EmployeeDao employeeDao = new EmployeeDao(connection);
+            EmployeeDao employeeDao = new EmployeeDao(connection);
 
-        EmployeeService employeeService = new EmployeeService(employeeDao);
+            EmployeeService employeeService = new EmployeeService(employeeDao);
 
-        List<Employee> employees = employeeService.getAll();
+            List<Employee> employees = employeeService.getAll();
 
-        request.setAttribute("employees", employees);
+            request.setAttribute("employees", employees);
 
-        request.getRequestDispatcher("/view/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/index.jsp").forward(request, response);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

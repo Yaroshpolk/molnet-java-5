@@ -16,40 +16,31 @@ public class EmployeeDao implements Dao<Employee> {
         this.connection = connection;
     }
 
-    public List<Employee> getAll() {
-        Statement statement = null;
-        List<Employee> resultList = null;
+    public List<Employee> getAll() throws SQLException {
+        Statement statement = connection.createStatement();
         EmployeeMapper mapper = new EmployeeMapper();
 
-        try {
-            statement = connection.createStatement();
-            resultList = mapper.map(statement.executeQuery("SELECT employees.id as employee_id, " +
-                    "first_name, last_name, patronymic, age, ha.id as address_id, ha.address, ha.district, ha.region, " +
-                    "s.id as shift_id, s.start_at, s.end_at FROM employees\n" +
-                    "LEFT JOIN home_addresses ha on ha.id = employees.address_id\n" +
-                    "LEFT JOIN shifts s on s.id = employees.shift_id"));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        List<Employee> resultList = mapper.map(statement.executeQuery("SELECT employees.id as employee_id, " +
+                "first_name, last_name, patronymic, age, ha.id as address_id, ha.address, ha.district, ha.region, " +
+                "s.id as shift_id, s.start_at, s.end_at FROM employees\n" +
+                "JOIN home_addresses ha on ha.id = employees.address_id\n" +
+                "JOIN shifts s on s.id = employees.shift_id\n" +
+                "ORDER BY last_name, first_name, patronymic"));
 
         return resultList;
     }
 
-    public Employee getById(int id) {
-        Statement statement = null;
-        List<Employee> resultList = null;
+    public Employee getById(int id) throws SQLException {
+        Statement statement = connection.createStatement();
         EmployeeMapper mapper = new EmployeeMapper();
 
-        try {
-            statement = connection.createStatement();
-            resultList = mapper.map(statement.executeQuery("SELECT employees.id as employee_id, " +
-                    "first_name, last_name, patronymic, age, ha.id as address_id, ha.address, ha.district, ha.region, " +
-                    "s.id as shift_id, s.start_at, s.end_at FROM employees\n" +
-                    "LEFT JOIN home_addresses ha on ha.id = employees.address_id\n" +
-                    "LEFT JOIN shifts s on s.id = employees.shift_id WHERE employees.id = " + id));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+        List<Employee> resultList = mapper.map(statement.executeQuery("SELECT employees.id as employee_id, " +
+                "first_name, last_name, patronymic, age, ha.id as address_id, ha.address, ha.district, ha.region, " +
+                "s.id as shift_id, s.start_at, s.end_at FROM employees\n" +
+                "JOIN home_addresses ha on ha.id = employees.address_id\n" +
+                "JOIN shifts s on s.id = employees.shift_id WHERE employees.id = " + id));
+
 
         return resultList.get(0);
     }
