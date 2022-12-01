@@ -3,13 +3,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <title>Ошибка на сервере</title>
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-<style>
-    <%@include file="/styles/main.css" %>
-</style>
 <div class="content error">
     <h1 class="title">
         500

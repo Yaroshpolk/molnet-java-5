@@ -6,11 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Профиль сотрудника</title>
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-<style>
-    <%@include file="/styles/main.css" %>
-</style>
 <%
     Employee employee = (Employee) request.getAttribute("employee");
 

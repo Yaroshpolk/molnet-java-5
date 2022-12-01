@@ -3,13 +3,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/main.css">
     <title>Ресурс не найден</title>
 </head>
 <body>
-<style>
-    <%@include file="/styles/main.css" %>
-</style>
 <div class="content error">
     <h1 class="title">
         404
