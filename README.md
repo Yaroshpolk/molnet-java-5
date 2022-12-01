@@ -6,8 +6,7 @@
 * PostgreSQL 15
 * Java 8
 * JDBC
-* Jakarta.servlet-api 5.0.0
-* Javax.servlet.jsp-api 2.3.1
+* Jakarta EE
 * GlassFish 6
 
 
