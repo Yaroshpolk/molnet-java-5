@@ -8,9 +8,9 @@
 </head>
 <body>
 <style>
-    <%@include file="/WEB-INF/styles/error.css" %>
+    <%@include file="/styles/main.css" %>
 </style>
-<div class="content">
+<div class="content error">
     <h1 class="title">
         500
     </h1>

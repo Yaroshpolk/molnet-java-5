@@ -17,6 +17,10 @@ body {
     height: 100%;
 }
 
+.content.error {
+    flex-direction: column;
+}
+
 .employees {
     width: 50%;
     max-height: 60%;
@@ -60,4 +64,56 @@ body {
 .employees__item:hover {
     opacity: .7;
     border-bottom: 1px solid rgba(5, 56, 107, 0.7);
+}
+
+.title {
+    font-size: 50px;
+}
+
+.subtitle {
+    font-size: 28px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-shadow: 0px 0px 23px 1px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 23px 1px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 23px 1px rgba(34, 60, 80, 0.2);
+    border-radius: 4px;
+    padding: 25px;
+    height: 150px;
+}
+
+.profile__avatar {
+    width: 150px;
+    background-color: #05386B;
+    text-align: center;
+    border-radius: 100px;
+}
+
+.profile__avatar-txt {
+    font-size: 35px;
+    color: #fff;
+    margin: 35% 0;
+}
+
+.profile__info {
+    margin-left: 20px;
+    max-width: 350px;
+}
+
+.profile__name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.profile__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.profile__item {
+    margin-bottom: 5px;
 }
