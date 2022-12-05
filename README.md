@@ -1,5 +1,5 @@
 # Тестовое задание в "ИТЦ МОЛНЕТ"
-В данный момент выполнены задачи 4-5  
+В данный момент выполнены задачи 4-6  
 Дамп БД : [ссылка](src/main/resources)
 
 ## Стек технологий
@@ -8,6 +8,7 @@
 * JDBC
 * Jakarta EE
 * GlassFish 6
+* Apache POI 5.2.3
 
 
 ## Endpoints
@@ -24,4 +25,10 @@
 
 ```
   http://localhost:8080/app/employee?id=1
+```
+
+Страница для выгрузки пользователей в Excel
+
+```
+  http://localhost:8080/app/downloadExcel
 ```
