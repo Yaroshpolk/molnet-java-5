@@ -68,7 +68,10 @@ body {
     border-radius: 5px;
     margin: 5px;
     cursor: pointer;
+    text-decoration: none;
     transition: opacity .2s ease-in-out;
+    padding: 3px;
+    font-size: 18px;
 }
 
 .employees__btn:hover {
@@ -78,6 +81,10 @@ body {
 .employees__btn:active {
     transition: opacity 0s;
     opacity: 1;
+}
+
+.employees__fileLoader {
+    visibility: hidden;
 }
 
 .employees__link {

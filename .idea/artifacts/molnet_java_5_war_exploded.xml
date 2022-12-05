@@ -16,6 +16,20 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.5.0" />
           <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:5.2.3" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi:5.2.3" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.15" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-math3:3.6.1" />
+          <element id="library" level="project" name="Maven: com.zaxxer:SparseBitSet:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-lite:5.2.3" />
+          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:5.1.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-compress:1.21" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.11.0" />
+          <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.07" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.18.0" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-collections4:4.4" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-to-slf4j:2.19.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.36" />
         </element>
       </element>
       <element id="directory" name="META-INF">

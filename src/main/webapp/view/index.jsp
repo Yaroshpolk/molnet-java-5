@@ -6,7 +6,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Тестовое задание № 5</title>
+    <title>Тестовое задание № 6</title>
     <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
     <div class="employees">
         <div class="employees__header">
             <p class="employees__title">Список сотрудников</p>
-            <button class="employees__btn" id="excelBtn">Скачать Excel файл</button>
+            <a class="employees__btn" href="/app/downloadExcel" target="_blank">Скачать excel файл</a>
         </div>
         <ul class="employees__list">
 
@@ -31,6 +31,5 @@
         </ul>
     </div>
 </div>
-<script src="../scripts/script.js"></script>
 </body>
 </html>
