@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeDao implements Dao<Employee> {
 
@@ -34,7 +35,6 @@ public class EmployeeDao implements Dao<Employee> {
         Statement statement = connection.createStatement();
         EmployeeMapper mapper = new EmployeeMapper();
 
-
         List<Employee> resultList = mapper.map(statement.executeQuery("SELECT employees.id as employee_id, " +
                 "first_name, last_name, patronymic, age, ha.id as address_id, ha.address, ha.district, ha.region, " +
                 "s.id as shift_id, s.start_at, s.end_at FROM employees\n" +
@@ -43,6 +43,18 @@ public class EmployeeDao implements Dao<Employee> {
 
 
         return resultList.get(0);
+    }
+
+    public Map<Integer, Integer> countAges() throws SQLException {
+        Statement statement = connection.createStatement();
+        EmployeeMapper mapper = new EmployeeMapper();
+
+        Map<Integer, Integer> result = mapper.mapAges(statement.executeQuery(
+                "SELECT age, count(age)\n" +
+                        "FROM employees\n" +
+                        "GROUP BY age"));
+
+        return result;
     }
 
 }

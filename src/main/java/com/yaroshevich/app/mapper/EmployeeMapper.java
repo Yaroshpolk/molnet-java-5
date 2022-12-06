@@ -7,7 +7,9 @@ import com.yaroshevich.app.model.Shift;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeMapper implements Mapper<Employee> {
 
@@ -38,6 +40,19 @@ public class EmployeeMapper implements Mapper<Employee> {
         }
 
         return list;
+    }
+
+    public Map<Integer, Integer> mapAges(ResultSet resultSet) throws SQLException {
+        Map<Integer, Integer> result = new HashMap<>();
+
+        while (resultSet.next()) {
+            int age = resultSet.getInt("age");
+            int count = resultSet.getInt("count");
+
+            result.put(age, count);
+        }
+
+        return result;
     }
 
 }

@@ -1,6 +1,7 @@
 <%@ page import="com.yaroshevich.app.model.Employee" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% List<Employee> employees = (List<Employee>) request.getAttribute("employees"); %>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -18,7 +19,7 @@
         </div>
         <ul class="employees__list">
 
-            <% for (Employee employee : (List<Employee>) request.getAttribute("employees")) { %>
+            <% for (Employee employee : employees) { %>
             <li class='employees__item'>
                 <a href=<%= "/app/employee?id=" + employee.getId() %> class='employees__link'>
                     <%= employee.getSecondName() %>
@@ -29,6 +30,9 @@
             <% } %>
 
         </ul>
+        <div class="employees__footer">
+            <a class="employees__btn" href="/app/charts" target="_self">Графики</a>
+        </div>
     </div>
 </div>
 </body>
