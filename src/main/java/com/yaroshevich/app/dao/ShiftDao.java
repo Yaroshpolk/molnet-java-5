@@ -11,13 +11,13 @@ import java.util.List;
 
 public class ShiftDao implements Dao<Shift> {
 
-    private final Connection connection = new DBConnector().getConnection();
-
     @Override
     public List<Shift> getAll() throws SQLException {
+        Connection connection = DBConnector.getConnection();
         Statement statement = connection.createStatement();
         ShiftMapper mapper = new ShiftMapper();
 
+        connection.close();
         return mapper.map(statement.executeQuery("SELECT * FROM shifts"));
     }
 

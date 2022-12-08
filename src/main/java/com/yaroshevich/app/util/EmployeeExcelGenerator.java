@@ -2,7 +2,7 @@ package com.yaroshevich.app.util;
 
 import com.yaroshevich.app.dao.EmployeeDao;
 import com.yaroshevich.app.model.Employee;
-import com.yaroshevich.app.service.EmployeeService;
+import jakarta.servlet.ServletOutputStream;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -10,9 +10,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,21 +18,11 @@ import java.util.Map;
 
 public class EmployeeExcelGenerator {
 
-    private final String filePath;
+    public void generateExcel(ServletOutputStream out) {
+        try (XSSFWorkbook workbook = new XSSFWorkbook()) {
 
-    public EmployeeExcelGenerator() {
-        this.filePath = PropertiesHelper.properties.getProperty("excel.directory")
-                + PropertiesHelper.properties.getProperty("excel.fileName");
-    }
-
-    public String generateExcel() {
-        try (Connection connection = new DBConnector().getConnection();
-             XSSFWorkbook workbook = new XSSFWorkbook();
-             FileOutputStream out = new FileOutputStream(filePath)) {
-
-            EmployeeDao dao = new EmployeeDao(connection);
-            EmployeeService service = new EmployeeService(dao);
-            ArrayList<Employee> employees = (ArrayList<Employee>) service.getAll();
+            EmployeeDao dao = new EmployeeDao();
+            ArrayList<Employee> employees = (ArrayList<Employee>) dao.getAll();
 
             Map<Integer, String> fields = new HashMap<Integer, String>() {{
                 put(0, "Имя");
@@ -88,8 +76,6 @@ public class EmployeeExcelGenerator {
             }
 
             workbook.write(out);
-
-            return this.filePath;
 
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);

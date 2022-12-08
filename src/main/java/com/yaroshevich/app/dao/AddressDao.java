@@ -11,13 +11,13 @@ import java.util.List;
 
 public class AddressDao implements Dao<Address> {
 
-    private final Connection connection = new DBConnector().getConnection();
-
     public List<Address> getAll() throws SQLException {
+        Connection connection = DBConnector.getConnection();
         Statement statement = connection.createStatement();
 
         AddressMapper mapper = new AddressMapper();
 
+        connection.close();
         return mapper.map(statement.executeQuery("SELECT * FROM home_addresses"));
 
     }

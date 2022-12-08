@@ -2,6 +2,7 @@ package com.yaroshevich.app.dao;
 
 import com.yaroshevich.app.mapper.EmployeeMapper;
 import com.yaroshevich.app.model.Employee;
+import com.yaroshevich.app.util.DBConnector;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,13 +12,10 @@ import java.util.Map;
 
 public class EmployeeDao implements Dao<Employee> {
 
-    private final Connection connection;
-
-    public EmployeeDao(Connection connection) {
-        this.connection = connection;
-    }
 
     public List<Employee> getAll() throws SQLException {
+        Connection connection = DBConnector.getConnection();
+
         Statement statement = connection.createStatement();
         EmployeeMapper mapper = new EmployeeMapper();
 
@@ -28,10 +26,13 @@ public class EmployeeDao implements Dao<Employee> {
                 "JOIN shifts s on s.id = employees.shift_id\n" +
                 "ORDER BY last_name, first_name, patronymic"));
 
+        connection.close();
+
         return resultList;
     }
 
     public Employee getById(int id) throws SQLException {
+        Connection connection = DBConnector.getConnection();
         Statement statement = connection.createStatement();
         EmployeeMapper mapper = new EmployeeMapper();
 
@@ -41,11 +42,12 @@ public class EmployeeDao implements Dao<Employee> {
                 "JOIN home_addresses ha on ha.id = employees.address_id\n" +
                 "JOIN shifts s on s.id = employees.shift_id WHERE employees.id = " + id));
 
-
+        connection.close();
         return resultList.get(0);
     }
 
     public Map<Integer, Integer> countAges() throws SQLException {
+        Connection connection = DBConnector.getConnection();
         Statement statement = connection.createStatement();
         EmployeeMapper mapper = new EmployeeMapper();
 
@@ -54,6 +56,7 @@ public class EmployeeDao implements Dao<Employee> {
                         "FROM employees\n" +
                         "GROUP BY age"));
 
+        connection.close();
         return result;
     }
 
