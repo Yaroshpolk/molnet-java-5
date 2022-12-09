@@ -32,3 +32,9 @@
 ```
   http://localhost:8080/app/downloadExcel
 ```
+
+Страница c графиками
+
+```
+  http://localhost:8080/app/charts
+```
