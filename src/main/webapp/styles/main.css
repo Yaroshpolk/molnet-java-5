@@ -22,7 +22,7 @@ body {
 }
 
 .employees {
-    width: 50%;
+    width: 900px;
     max-height: 60%;
     border-radius: 4px;
     overflow: hidden;
@@ -88,14 +88,40 @@ body {
 }
 
 .employees__link {
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr 2fr;
     font-size: 18px;
     text-decoration: none;
     color: #000;
 }
 
+.employees__item_titles {
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr 2fr;
+    border-bottom: 1px solid black;
+}
+
+.employees__item_titles .employees__field {
+    font-weight: bold;
+}
+
+.employees__field {
+    margin: 0;
+}
+
+.employees__field.field__age {
+    width: auto;
+    text-align: center;
+}
+
 .employees__item:hover {
     opacity: .7;
     border-bottom: 1px solid rgba(5, 56, 107, 0.7);
+}
+
+.employees__item_titles:hover {
+    opacity: 1;
+    border-bottom: 1px solid black;
 }
 
 .title {

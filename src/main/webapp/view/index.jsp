@@ -19,12 +19,30 @@
         </div>
         <ul class="employees__list">
 
+            <li class="employees__item employees__item_titles">
+                <p class="employees__field">ФИО</p>
+                <p class="employees__field field__age">Возраст</p>
+                <p class="employees__field">Округ</p>
+                <p class="employees__field">Регион</p>
+            </li>
+
             <% for (Employee employee : employees) { %>
             <li class='employees__item'>
                 <a href=<%= "/app/employee?id=" + employee.getId() %> class='employees__link'>
-                    <%= employee.getSecondName() %>
-                    <%= employee.getFirstName() %>
-                    <%= employee.getPatronymic() %>
+                    <p class="employees__field">
+                        <%= employee.getSecondName() %>
+                        <%= employee.getFirstName() %>
+                        <%= employee.getPatronymic() %>
+                    </p>
+                    <p class="employees__field field__age">
+                        <%= employee.getAge() %>
+                    </p>
+                    <p class="employees__field">
+                        <%= employee.getAddress().getDistrict() %>
+                    </p>
+                    <p class="employees__field">
+                        <%= employee.getAddress().getRegion() %>
+                    </p>
                 </a>
             </li>
             <% } %>
