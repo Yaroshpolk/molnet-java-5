@@ -1,12 +1,15 @@
 package com.yaroshevich.app.controller;
 
+import com.yaroshevich.app.dao.AddressDao;
 import com.yaroshevich.app.dao.EmployeeDao;
+import com.yaroshevich.app.model.Address;
 import com.yaroshevich.app.model.Employee;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.math3.analysis.function.Add;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,10 +23,13 @@ public class MainServlet extends HttpServlet {
         try {
 
             EmployeeDao employeeDao = new EmployeeDao();
+            AddressDao addressDao = new AddressDao();
 
             List<Employee> employees = employeeDao.getAll();
+            List<Address> addresses = addressDao.getAll();
 
             request.setAttribute("employees", employees);
+            request.setAttribute("addresses", addresses);
 
             request.getRequestDispatcher("/view/index.jsp").forward(request, response);
 

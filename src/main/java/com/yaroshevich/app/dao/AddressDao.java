@@ -3,6 +3,7 @@ package com.yaroshevich.app.dao;
 import com.yaroshevich.app.mapper.AddressMapper;
 import com.yaroshevich.app.model.Address;
 import com.yaroshevich.app.util.DBConnector;
+import org.apache.commons.math3.analysis.function.Add;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,8 +18,10 @@ public class AddressDao implements Dao<Address> {
 
         AddressMapper mapper = new AddressMapper();
 
+        List<Address> resultList = mapper.map(statement.executeQuery("SELECT * FROM home_addresses"));
+
         connection.close();
-        return mapper.map(statement.executeQuery("SELECT * FROM home_addresses"));
+        return resultList;
 
     }
 
