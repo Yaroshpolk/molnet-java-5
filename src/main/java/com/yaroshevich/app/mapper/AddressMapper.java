@@ -13,13 +13,13 @@ public class AddressMapper implements Mapper<Address> {
         List<Address> list = new ArrayList<>();
 
         while (resultSet.next()) {
-            int id = resultSet.getInt("id");
-            String address = resultSet.getString("address");
-            String district = resultSet.getString("district");
-            String region = resultSet.getString("region");
-
-            Address addressObj = new Address(id, address, district, region);
-            list.add(addressObj);
+//            int id = resultSet.getInt("id");
+//            String address = resultSet.getString("address");
+//            String district = resultSet.getString("district");
+//            String region = resultSet.getString("region");
+//
+//            Address addressObj = new Address(id, address);
+//            list.add(addressObj);
         }
 
         return list;

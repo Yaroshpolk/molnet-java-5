@@ -31,7 +31,7 @@ public class EmployeeExcelGenerator {
                 put(3, "Возраст");
                 put(4, "Адрес");
                 put(5, "Район");
-                put(6, "Регион");
+                put(6, "Округ");
                 put(7, "Начало смены");
                 put(8, "Конец смены");
             }};
@@ -62,8 +62,8 @@ public class EmployeeExcelGenerator {
                 row.createCell(2).setCellValue(employee.getPatronymic());
                 row.createCell(3).setCellValue(employee.getAge());
                 row.createCell(4).setCellValue(employee.getAddress().getAddress());
-                row.createCell(5).setCellValue(employee.getAddress().getDistrict());
-                row.createCell(6).setCellValue(employee.getAddress().getRegion());
+                row.createCell(5).setCellValue(employee.getAddress().getDistrict().getName());
+                row.createCell(6).setCellValue(employee.getAddress().getDistrict().getParentName());
                 row.createCell(7).setCellValue(employee.getShift().getStart());
                 row.createCell(8).setCellValue(employee.getShift().getEnd());
 

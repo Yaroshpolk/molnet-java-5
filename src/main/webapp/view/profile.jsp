@@ -14,10 +14,10 @@
 
     String name = employee.getSecondName() + " " + employee.getFirstName() + " " + employee.getPatronymic();
     String address = employee.getAddress().getAddress() + ", "
-            + employee.getAddress().getDistrict() + ", " + employee.getAddress().getRegion();
+            + employee.getAddress().getDistrict().getName() + ", " + employee.getAddress().getDistrict().getParentName();
     String shift = employee.getShift().getStart() + " - " + employee.getShift().getEnd();
 %>
-<div class="content">
+<div class="content prof">
     <div class="profile">
         <div class="profile__avatar">
             <p class="profile__avatar-txt">Фото</p>

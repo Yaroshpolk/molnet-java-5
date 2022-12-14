@@ -1,6 +1,7 @@
 package com.yaroshevich.app.mapper;
 
 import com.yaroshevich.app.model.Address;
+import com.yaroshevich.app.model.District;
 import com.yaroshevich.app.model.Employee;
 import com.yaroshevich.app.model.Shift;
 
@@ -25,14 +26,18 @@ public class EmployeeMapper implements Mapper<Employee> {
 
             int addressId = resultSet.getInt("address_id");
             String address = resultSet.getString("address");
-            String district = resultSet.getString("district");
-            String region = resultSet.getString("region");
+
+            int districtId = resultSet.getInt("district_id");
+            String districtName = resultSet.getString("district_name");
+            int districtParentId = resultSet.getInt("district_parent_id");
+            String districtParentName = resultSet.getString("district_parent");
 
             int shiftId = resultSet.getInt("shift_id");
             String startAt = resultSet.getString("start_at");
             String endAt = resultSet.getString("end_at");
 
-            Address addressObj = new Address(addressId, address, district, region);
+            District districtObj = new District(districtId, districtName, districtParentId, districtParentName);
+            Address addressObj = new Address(addressId, address, districtObj);
             Shift shiftObj = new Shift(shiftId, startAt, endAt);
 
             Employee employee = new Employee(id, firstName, lastName, patronymic, age, addressObj, shiftObj);

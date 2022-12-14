@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div class="content">
+<div class="content prof">
     <div class="charts">
         <div class="charts__age">
             <canvas id="ageChart">

@@ -3,7 +3,7 @@
 <%@ page import="com.yaroshevich.app.model.Address" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% List<Employee> employees = (List<Employee>) request.getAttribute("employees"); %>
-<% List<Address> addresses = (List<Address>) request.getAttribute("addresses"); %>
+<%--<% List<Address> addresses = (List<Address>) request.getAttribute("addresses"); %>--%>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,13 +27,13 @@
                     <p class="form__subtitle">Округ</p>
                     <select class="form__select form__input" name="filter_district">
                         <option>-----</option>
-                        <% for (Address address : addresses) { %>
+<%--                        <% for (Address address : addresses) { %>--%>
 
-                        <option value="<%= address.getDistrict() %>">
-                            <%= address.getDistrict() %>
-                        </option>
+<%--                        <option value="<%= address.getDistrict() %>">--%>
+<%--                            <%= address.getDistrict() %>--%>
+<%--                        </option>--%>
 
-                        <% } %>
+<%--                        <% } %>--%>
                     </select>
                 </label>
 
@@ -41,13 +41,13 @@
                     <p class="form__subtitle">Район</p>
                     <select class="form__select form__input" name="filter_region">
                         <option>-----</option>
-                        <% for (Address address : addresses) { %>
+<%--                        <% for (Address address : addresses) { %>--%>
 
-                        <option value="<%= address.getRegion() %>">
-                            <%= address.getRegion() %>
-                        </option>
+<%--                        <option value="<%= address.getRegion() %>">--%>
+<%--                            <%= address.getRegion() %>--%>
+<%--                        </option>--%>
 
-                        <% } %>
+<%--                        <% } %>--%>
                     </select>
                 </label>
 
@@ -105,10 +105,10 @@
                             <%= employee.getAge() %>
                         </p>
                         <p class="employees__field">
-                            <%= employee.getAddress().getDistrict() %>
+                            <%= employee.getAddress().getDistrict().getName() %>
                         </p>
                         <p class="employees__field">
-                            <%= employee.getAddress().getRegion() %>
+                            <%= employee.getAddress().getDistrict().getParentName() %>
                         </p>
                     </a>
                 </li>
@@ -171,13 +171,13 @@
                     <p class="form__subtitle">Округ</p>
                     <select class="form__select form__input" name="employee_district">
                         <option>-----</option>
-                        <% for (Address address : addresses) { %>
+<%--                        <% for (Address address : addresses) { %>--%>
 
-                        <option value="<%= address.getDistrict() %>">
-                            <%= address.getDistrict() %>
-                        </option>
+<%--                        <option value="<%= address.getDistrict() %>">--%>
+<%--                            <%= address.getDistrict() %>--%>
+<%--                        </option>--%>
 
-                        <% } %>
+<%--                        <% } %>--%>
                     </select>
                 </label>
 
@@ -185,13 +185,13 @@
                     <p class="form__subtitle">Район</p>
                     <select class="form__select form__input" name="employee_region">
                         <option>-----</option>
-                        <% for (Address address : addresses) { %>
+<%--                        <% for (Address address : addresses) { %>--%>
 
-                        <option value="<%= address.getRegion() %>">
-                            <%= address.getRegion() %>
-                        </option>
+<%--                        <option value="<%= address.getRegion() %>">--%>
+<%--                            <%= address.getRegion() %>--%>
+<%--                        </option>--%>
 
-                        <% } %>
+<%--                        <% } %>--%>
                     </select>
                 </label>
             </div>
