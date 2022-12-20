@@ -29,14 +29,22 @@ public class EmployeeMapper implements Mapper<Employee> {
 
             int districtId = resultSet.getInt("district_id");
             String districtName = resultSet.getString("district_name");
-            int districtParentId = resultSet.getInt("district_parent_id");
+            Integer districtParentId = resultSet.getInt("district_parent_id");
             String districtParentName = resultSet.getString("district_parent");
 
             int shiftId = resultSet.getInt("shift_id");
             String startAt = resultSet.getString("start_at");
             String endAt = resultSet.getString("end_at");
 
-            District districtObj = new District(districtId, districtName, districtParentId, districtParentName);
+            District parent;
+
+            if (districtParentId == null) {
+                parent = null;
+            } else {
+                parent = new District(districtParentId, districtParentName);
+            }
+
+            District districtObj = new District(districtId, districtName, parent);
             Address addressObj = new Address(addressId, address, districtObj);
             Shift shiftObj = new Shift(shiftId, startAt, endAt);
 
