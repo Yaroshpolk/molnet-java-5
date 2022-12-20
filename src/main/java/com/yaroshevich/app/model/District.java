@@ -6,15 +6,22 @@ public class District {
 
     private final String name;
 
-    private final int parent_id;
+    private final District parent;
 
-    private final String parentName;
-
-    public District(int id, String name, int parent_id, String parentName) {
+    public District(int id, String name, District parent) {
         this.id = id;
         this.name = name;
-        this.parent_id = parent_id;
-        this.parentName = parentName;
+        this.parent = parent;
+    }
+
+    public District(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.parent = null;
+    }
+
+    public District getParent() {
+        return parent;
     }
 
     public int getId() {
@@ -25,21 +32,12 @@ public class District {
         return name;
     }
 
-    public int getParent_id() {
-        return parent_id;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
     @Override
     public String toString() {
         return "District{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", parent_id=" + parent_id +
-                ", parentName='" + parentName + '\'' +
+                ", parent=" + parent +
                 '}';
     }
 }

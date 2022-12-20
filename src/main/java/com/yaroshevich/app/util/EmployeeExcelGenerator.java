@@ -63,7 +63,7 @@ public class EmployeeExcelGenerator {
                 row.createCell(3).setCellValue(employee.getAge());
                 row.createCell(4).setCellValue(employee.getAddress().getAddress());
                 row.createCell(5).setCellValue(employee.getAddress().getDistrict().getName());
-                row.createCell(6).setCellValue(employee.getAddress().getDistrict().getParentName());
+                row.createCell(6).setCellValue(employee.getAddress().getDistrict().getParent().getName());
                 row.createCell(7).setCellValue(employee.getShift().getStart());
                 row.createCell(8).setCellValue(employee.getShift().getEnd());
 
