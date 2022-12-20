@@ -26,6 +26,16 @@ public class Employee {
         this.shift = shift;
     }
 
+    public Employee(String firstName, String secondName, String patronymic, int age, Address address, Shift shift) {
+        this.id = 0;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.patronymic = patronymic;
+        this.age = age;
+        this.address = address;
+        this.shift = shift;
+    }
+
     public long getId() {
         return id;
     }

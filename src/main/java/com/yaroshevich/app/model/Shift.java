@@ -14,6 +14,12 @@ public class Shift {
         this.end = end;
     }
 
+    public Shift(String start, String end) {
+        this.id = 0;
+        this.start = start;
+        this.end = end;
+    }
+
     public int getId() {
         return id;
     }

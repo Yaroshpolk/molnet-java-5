@@ -75,6 +75,18 @@ public class EmployeeDao implements Dao<Employee> {
         return resultList.get(0);
     }
 
+    public void add(Employee employee) throws SQLException {
+        Connection connection = DBConnector.getConnection();
+        Statement statement = connection.createStatement();
+        EmployeeMapper mapper = new EmployeeMapper();
+
+        statement.executeQuery("INSERT INTO employees(first_name, last_name, patronymic, age, address_id, shift_id) " +
+                "VALUES (" + employee.getFirstName() + "," + employee.getSecondName() + "," + employee.getPatronymic() +
+                "," + employee.getAge() + "," + employee.getAddress().getId() + "," + employee.getShift().getId());
+
+        connection.close();
+    }
+
     public Map<Integer, Integer> countAges() throws SQLException {
         Connection connection = DBConnector.getConnection();
         Statement statement = connection.createStatement();

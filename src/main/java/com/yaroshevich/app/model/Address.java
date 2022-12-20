@@ -14,6 +14,12 @@ public class Address {
         this.district = district;
     }
 
+    public Address(String address, District district) {
+        this.id = 0;
+        this.address = address;
+        this.district = district;
+    }
+
     public int getId() {
         return id;
     }
