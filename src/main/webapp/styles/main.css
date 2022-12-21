@@ -14,7 +14,7 @@ body {
 }
 
 .data {
-    max-width: 1200px;
+    width: 1200px;
     margin: auto auto;
 }
 
@@ -104,6 +104,8 @@ body {
 .employees__field {
     margin: 0;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .employees__field.field__age {
@@ -321,7 +323,7 @@ body {
     background-color: rgba(24, 176, 255, 0.17);
 }
 
-.search .form {
+.search .search__field {
     width: 100%;
 }
 

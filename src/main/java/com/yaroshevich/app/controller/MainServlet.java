@@ -2,6 +2,7 @@ package com.yaroshevich.app.controller;
 
 import com.yaroshevich.app.dao.DistrictDao;
 import com.yaroshevich.app.dao.EmployeeDao;
+import com.yaroshevich.app.dataObject.FilterDataObject;
 import com.yaroshevich.app.model.District;
 import com.yaroshevich.app.model.Employee;
 import jakarta.servlet.ServletException;
@@ -22,15 +23,22 @@ public class MainServlet extends HttpServlet {
         try {
 
             EmployeeDao employeeDao = new EmployeeDao();
-            List<Employee> employees = employeeDao.getAll();
+
+            List<Employee> employees;
+
+            if (request.getAttribute("filteredData") != null) {
+                employees = employeeDao.getWithFilter((FilterDataObject) request.getAttribute("filteredData"));
+            } else {
+                employees = employeeDao.getAll();
+            }
 
             DistrictDao districtDao = new DistrictDao();
             List<District> districts = districtDao.getDistricts();
+            List<District> regions = districtDao.getRegions();
 
             request.setAttribute("employees", employees);
             request.setAttribute("districts", districts);
-
-            System.out.println(districts);
+            request.setAttribute("regions", regions);
 
             request.getRequestDispatcher("/view/index.jsp").forward(request, response);
 

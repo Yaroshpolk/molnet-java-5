@@ -70,4 +70,23 @@ public class DistrictDao implements Dao<District> {
 
         return resultList;
     }
+
+    public List<District> getRegions() throws SQLException {
+        Connection connection = DBConnector.getConnection();
+        Statement statement = connection.createStatement();
+
+        DistrictMapper mapper = new DistrictMapper();
+
+        List<District> resultList = mapper.map(statement.executeQuery(
+                "SELECT districts.id as district_id,\n" +
+                        "       districts.district_name,\n" +
+                        "       districts.parent_id,\n" +
+                        "       d2.district_name as district_parent\n" +
+                        "FROM districts\n" +
+                        "         JOIN districts d on d.id = districts.id\n" +
+                        "         JOIN districts d2 on d2.id = d.id\n" +
+                        "where districts.parent_id  IS NOT NULL "));
+
+        return resultList;
+    }
 }

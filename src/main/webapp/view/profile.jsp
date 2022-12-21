@@ -14,7 +14,7 @@
 
     String name = employee.getSecondName() + " " + employee.getFirstName() + " " + employee.getPatronymic();
     String address = employee.getAddress().getAddress() + ", "
-            + employee.getAddress().getDistrict().getName() + ", " + employee.getAddress().getDistrict().getParentName();
+            + employee.getAddress().getDistrict().getName() + ", " + employee.getAddress().getDistrict().getParent().getName();
     String shift = employee.getShift().getStart() + " - " + employee.getShift().getEnd();
 %>
 <div class="content prof">

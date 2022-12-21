@@ -1,8 +1,10 @@
 let popup = document.getElementById('employeePopup');
-let form = document.getElementById('addEmployeeForm');
 
 let closeBtn = document.getElementById('closePopupBtn');
-let openBtn = document.getElementById('openPopupBtn')
+let openBtn = document.getElementById('openPopupBtn');
+
+let addForm = document.getElementById('addEmployeeForm');
+let addButton = document.getElementById('addButton');
 
 closeBtn.addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -12,5 +14,12 @@ closeBtn.addEventListener('click', (evt) => {
 openBtn.addEventListener('click', (evt) => {
     evt.preventDefault();
     popup.classList.remove('popup_hidden');
-    form.reset();
+    addForm.reset();
 });
+
+const formValidate = (form) => {
+
+    let inputs = Array.from(form.getElementsByTagName('input'));
+
+    console.log(inputs)
+}
