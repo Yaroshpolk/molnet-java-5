@@ -45,9 +45,9 @@ public class FilterDataObject {
         String res = "";
 
         if (!searchLine.equals("")){
-            res = "(LOWER(first_name) LIKE '%" + searchLine + "%' or LOWER(last_name) LIKE '%" + searchLine +
+            res = "((LOWER(first_name) LIKE '%" + searchLine + "%' or LOWER(last_name) LIKE '%" + searchLine +
                     "%' or LOWER(patronymic) LIKE '%" + searchLine + "%') OR (CONCAT(LOWER(last_name), ' ', " +
-                    "LOWER(first_name), ' ', LOWER(first_name))) LIKE '%" + searchLine + "%'";
+                    "LOWER(first_name), ' ', LOWER(first_name))) LIKE '%" + searchLine + "%')";
         }
 
         return res;

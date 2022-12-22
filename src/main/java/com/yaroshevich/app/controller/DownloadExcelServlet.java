@@ -1,5 +1,6 @@
 package com.yaroshevich.app.controller;
 
+import com.yaroshevich.app.model.Employee;
 import com.yaroshevich.app.util.EmployeeExcelGenerator;
 import com.yaroshevich.app.util.PropertiesHelper;
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "DownloadExcelServlet", value = "/app/downloadExcel")
 public class DownloadExcelServlet extends HttpServlet {
@@ -23,7 +25,7 @@ public class DownloadExcelServlet extends HttpServlet {
         response.setHeader("Content-Disposition", String.format("attachment; filename=%s.xlsx", fileName));
 
         try (ServletOutputStream out = response.getOutputStream()) {
-            excelGenerator.generateExcel(out);
+            excelGenerator.generateExcel(out, (List<Employee>) request.getSession().getAttribute("employees"));
         }
 
     }

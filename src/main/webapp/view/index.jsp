@@ -1,12 +1,11 @@
 <%@ page import="com.yaroshevich.app.model.Employee" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.yaroshevich.app.model.District" %>
-<%@ page import="java.nio.charset.StandardCharsets" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% List<Employee> employees = (List<Employee>) request.getAttribute("employees"); %>
 <% List<District> districts = (List<District>) request.getAttribute("districts"); %>
 <% List<District> regions = (List<District>) request.getAttribute("regions"); %>
-
+<% session.setAttribute("employees", employees); %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -255,7 +254,7 @@
 
     <% if (request.getParameter("search_field") != null) {%>
     document.querySelector(".search").querySelector(".search-input").value =
-    "<%= request.getParameter("search_field") %>";
+        "<%= request.getParameter("search_field") %>";
     <% } %>
 </script>
 </body>
