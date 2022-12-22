@@ -74,8 +74,6 @@ public class EmployeeDao implements Dao<Employee> {
                 filter.generateQuery()
         ));
 
-        System.out.println(filter.generateQuery());
-
         connection.close();
 
         return resultList;

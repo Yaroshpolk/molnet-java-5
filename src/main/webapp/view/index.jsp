@@ -252,6 +252,11 @@
     document.querySelector(".sidebar").querySelector(".t_input").value =
     <%= request.getParameter("filter_sortType") %>;
     <% } %>
+
+    <% if (request.getParameter("search_field") != null) {%>
+    document.querySelector(".search").querySelector(".search-input").value =
+    "<%= request.getParameter("search_field") %>";
+    <% } %>
 </script>
 </body>
 </html>

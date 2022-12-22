@@ -14,7 +14,7 @@ public class FilterDataObject {
         this.districtId = districtId;
         this.regionId = regionId;
         this.filterQr = createFilterQuery(filterType);
-        this.searchQr = createSearchQuery(search);
+        this.searchQr = createSearchQuery(search.toLowerCase().trim());
     }
 
     private String createFilterQuery(Integer filterType) {
@@ -42,10 +42,13 @@ public class FilterDataObject {
     }
 
     private String createSearchQuery(String searchLine) {
-        String res = "(first_name LIKE \'%" + searchLine + "%\' or last_name LIKE \'%" + searchLine + "%\') OR " +
-                "(CONCAT(last_name, \' \', first_name)) LIKE \'%" + searchLine + "%\'";
+        String res = "";
 
-        System.out.println(res);
+        if (!searchLine.equals("")){
+            res = "(LOWER(first_name) LIKE '%" + searchLine + "%' or LOWER(last_name) LIKE '%" + searchLine +
+                    "%' or LOWER(patronymic) LIKE '%" + searchLine + "%') OR (CONCAT(LOWER(last_name), ' ', " +
+                    "LOWER(first_name), ' ', LOWER(first_name))) LIKE '%" + searchLine + "%'";
+        }
 
         return res;
     }
@@ -55,11 +58,11 @@ public class FilterDataObject {
 
         if (this.districtId != 0 && this.regionId != 0) {
             res = "WHERE d2.id = " + this.districtId + " and " + "d.id = " + this.regionId +
-                    " " + this.filterQr;
+                    " ";
         } else if (this.districtId != 0 && this.regionId == 0) {
-            res = "WHERE d2.id = " + this.districtId + " " + this.filterQr;
+            res = "WHERE d2.id = " + this.districtId + " ";
         } else if (this.districtId == 0 && this.regionId != 0) {
-            res = "WHERE d.id = " + this.regionId + " " + this.filterQr;
+            res = "WHERE d.id = " + this.regionId + " ";
         }
 
         if (!this.searchQr.equals("")) {
@@ -71,8 +74,6 @@ public class FilterDataObject {
         }
 
         res += this.filterQr;
-
-        System.out.println(res);
 
         return res;
     }

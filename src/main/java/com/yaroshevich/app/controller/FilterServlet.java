@@ -13,6 +13,8 @@ import java.io.IOException;
 public class FilterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
         int districtId = Integer.parseInt(request.getParameter("filter_district"));
         int regionId = Integer.parseInt(request.getParameter("filter_region"));
         int sortType = Integer.parseInt(request.getParameter("filter_sortType"));
