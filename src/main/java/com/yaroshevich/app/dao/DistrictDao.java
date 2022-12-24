@@ -49,7 +49,7 @@ public class DistrictDao implements Dao<District> {
                 "    where districts.id=" + id));
 
         connection.close();
-        return resultList.get(0);
+        return resultList.size() > 0 ? resultList.get(0) : null;
     }
 
     public List<District> getDistricts() throws SQLException {

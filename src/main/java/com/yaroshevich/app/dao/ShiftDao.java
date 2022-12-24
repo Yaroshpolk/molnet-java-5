@@ -17,12 +17,47 @@ public class ShiftDao implements Dao<Shift> {
         Statement statement = connection.createStatement();
         ShiftMapper mapper = new ShiftMapper();
 
+        List<Shift> resultList = mapper.map(statement.executeQuery("SELECT * FROM shifts"));
+
         connection.close();
-        return mapper.map(statement.executeQuery("SELECT * FROM shifts"));
+        return resultList;
     }
 
     @Override
     public Shift getById(int id) throws SQLException {
-        return null;
+        Connection connection = DBConnector.getConnection();
+        Statement statement = connection.createStatement();
+        ShiftMapper mapper = new ShiftMapper();
+
+        List<Shift> resultList = mapper.map(statement.executeQuery("SELECT * FROM shifts WHERE id = " + id));
+
+        connection.close();
+        return resultList.size() > 0 ? resultList.get(0) : null;
+    }
+
+    public Shift getByTime(Shift shift) throws SQLException {
+        Connection connection = DBConnector.getConnection();
+        Statement statement = connection.createStatement();
+        ShiftMapper mapper = new ShiftMapper();
+
+        System.out.println(shift.getEnd());
+
+        List<Shift> resultList = mapper.map(statement.executeQuery("SELECT * FROM shifts WHERE start_at = '"
+                + shift.getStart() + "' and end_at = '" + shift.getEnd() + "'"));
+
+        connection.close();
+        return resultList.size() > 0 ? resultList.get(0) : null;
+    }
+
+    public Shift add(Shift shift) throws SQLException {
+        Connection connection = DBConnector.getConnection();
+        Statement statement = connection.createStatement();
+
+        statement.executeUpdate("INSERT INTO shifts(start_at, end_at) VALUES ('"
+                + shift.getStart() + "', '" + shift.getEnd() + "')");
+
+        connection.close();
+
+        return getByTime(shift);
     }
 }

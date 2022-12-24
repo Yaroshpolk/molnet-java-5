@@ -126,7 +126,8 @@
             <button class="btn btn_blue" id="closePopupBtn">X</button>
         </div>
 
-        <form class="form" action="/app/employee/add" name="addEmployeeForm" id="addEmployeeForm" method="post">
+        <form class="form" action="/app/employee/add" name="addEmployeeForm" id="addEmployeeForm" method="post"
+              novalidate>
 
             <h2 class="form__title">Добавление нового сотрудника</h2>
 
@@ -134,24 +135,24 @@
                 <label class="form__field">
                     <p class="form__subtitle">Имя</p>
                     <input type="text" class="form__input" placeholder=""
-                           name="employee_firstName" required>
+                           name="employee_firstName" maxlength="20" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Фамилия</p>
                     <input type="text" class="form__input" placeholder=""
-                           name="employee_lastName" required>
+                           name="employee_lastName" maxlength="30" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Отчество</p>
                     <input type="text" class="form__input" placeholder=""
-                           name="employee_patronymic" required>
+                           name="employee_patronymic" maxlength="20" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Возраст</p>
-                    <input type="text" class="form__input" placeholder=""
+                    <input type="number" class="form__input" placeholder=""
                            name="employee_age" required>
                 </label>
             </div>
@@ -160,7 +161,7 @@
                 <label class="form__field">
                     <p class="form__subtitle">Адрес</p>
                     <input type="text" class="form__input" placeholder=""
-                           name="employee_address" required>
+                           name="employee_address" minlength="5" maxlength="120" required>
                 </label>
 
                 <div class="district_selects">
@@ -190,11 +191,13 @@
             <div class="form__fields shifts">
                 <label class="form__field">
                     <p class="form__subtitle">Начало рабочего дня</p>
-                    <input type="text" class="form__input" placeholder="00:00:00" name="employee_start" required>
+                    <input type="time" class="form__input" placeholder="00:00:00" name="employee_start" minlength="0"
+                           maxlength="8">
                 </label>
                 <label class="form__field">
                     <p class="form__subtitle">Конец рабочего дня</p>
-                    <input type="text" class="form__input" placeholder="23:59:59" name="employee_end" required>
+                    <input type="time" class="form__input" placeholder="23:59:59" name="employee_end" minlength="0"
+                           maxlength="8">
                 </label>
             </div>
             <div class="popup__footer">

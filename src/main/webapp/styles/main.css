@@ -278,6 +278,11 @@ body {
     cursor: pointer;
 }
 
+.form__error {
+    color: #ff0000;
+    font-size: 12px;
+}
+
 
 /* Кнопки */
 .btn {
@@ -384,4 +389,9 @@ body {
 .sidebar .form .btn {
     margin-top: 30px;
     padding: 10px 25px;
+}
+
+.district_selects {
+    display: flex;
+    flex-direction: column;
 }

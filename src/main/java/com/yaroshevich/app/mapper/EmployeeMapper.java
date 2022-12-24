@@ -32,11 +32,12 @@ public class EmployeeMapper implements Mapper<Employee> {
             Integer districtParentId = resultSet.getInt("district_parent_id");
             String districtParentName = resultSet.getString("district_parent");
 
-            int shiftId = resultSet.getInt("shift_id");
+            Integer shiftId = resultSet.getInt("shift_id");
             String startAt = resultSet.getString("start_at");
             String endAt = resultSet.getString("end_at");
 
             District parent;
+            Shift shiftObj;
 
             if (districtParentId == null) {
                 parent = null;
@@ -44,11 +45,18 @@ public class EmployeeMapper implements Mapper<Employee> {
                 parent = new District(districtParentId, districtParentName);
             }
 
+            if (shiftId == null) {
+                shiftObj = null;
+            } else {
+                shiftObj = new Shift(shiftId, startAt, endAt);
+            }
+
             District districtObj = new District(districtId, districtName, parent);
             Address addressObj = new Address(addressId, address, districtObj);
-            Shift shiftObj = new Shift(shiftId, startAt, endAt);
+
 
             Employee employee = new Employee(id, firstName, lastName, patronymic, age, addressObj, shiftObj);
+
             list.add(employee);
         }
 
