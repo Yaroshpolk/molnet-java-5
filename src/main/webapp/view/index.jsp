@@ -131,7 +131,7 @@
                                 %>
                            href="/app/main?<%= newUrl +
                            (request.getParameterMap().size() - 1 > 0 ? "&page=" + i : "page=" + i)%>">
-                            <%= i //TODO фикс дублирования &&&%>
+                            <%= i %>
                         </a>
                     </li>
                     <% } %>
