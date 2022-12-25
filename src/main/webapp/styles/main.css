@@ -270,6 +270,11 @@ body {
     transition: border .2s ease-in-out;
 }
 
+.form__input_invalid {
+    border: 1px solid #ff000040;
+    background-color: rgba(255, 0, 0, 0.06);
+}
+
 .form__input:focus {
     border: 1px solid #b7b0b0;
 }
