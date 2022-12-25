@@ -1,7 +1,7 @@
 package com.yaroshevich.app.util;
 
 import com.yaroshevich.app.dao.EmployeeDao;
-import com.yaroshevich.app.dataObject.FilterDataObject;
+import com.yaroshevich.app.filter.FilterDataObject;
 import com.yaroshevich.app.model.Employee;
 import jakarta.servlet.ServletOutputStream;
 import org.apache.poi.ss.usermodel.Cell;

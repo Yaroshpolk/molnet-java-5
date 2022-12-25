@@ -1,6 +1,6 @@
 package com.yaroshevich.app.controller;
 
-import com.yaroshevich.app.dataObject.FilterDataObject;
+import com.yaroshevich.app.filter.FilterDataObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

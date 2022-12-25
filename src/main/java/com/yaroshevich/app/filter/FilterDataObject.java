@@ -1,4 +1,4 @@
-package com.yaroshevich.app.dataObject;
+package com.yaroshevich.app.filter;
 
 public class FilterDataObject {
 
@@ -44,7 +44,7 @@ public class FilterDataObject {
     private String createSearchQuery(String searchLine) {
         String res = "";
 
-        if (!searchLine.equals("")){
+        if (!searchLine.equals("")) {
             res = "((LOWER(first_name) LIKE '%" + searchLine + "%' or LOWER(last_name) LIKE '%" + searchLine +
                     "%' or LOWER(patronymic) LIKE '%" + searchLine + "%') OR (CONCAT(LOWER(last_name), ' ', " +
                     "LOWER(first_name), ' ', LOWER(first_name))) LIKE '%" + searchLine + "%')";

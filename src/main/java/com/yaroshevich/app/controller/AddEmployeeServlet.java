@@ -30,7 +30,6 @@ public class AddEmployeeServlet extends HttpServlet {
         Integer employeeAge = request.getParameter("employee_age").equals("") ?
                 null : Integer.valueOf(request.getParameter("employee_age"));
         String employeeAddress = request.getParameter("employee_address");
-        int employeeParentDistrictId = Integer.parseInt(request.getParameter("employee_district"));
         int employeeDistrictId = Integer.parseInt(request.getParameter("employee_region"));
         String employeeStart = request.getParameter("employee_start");
         String employeeEnd = request.getParameter("employee_end");
@@ -45,26 +44,31 @@ public class AddEmployeeServlet extends HttpServlet {
         Address address = null;
 
         try {
+
             district = districtDao.getById(employeeDistrictId);
 
+            Shift shiftObj = new Shift(employeeStart, employeeEnd);
             if (!employeeStart.equals("") && !employeeEnd.equals("")) {
-                if (shiftDao.getByTime(new Shift(employeeStart, employeeEnd)) != null) {
-                    shift = shiftDao.getByTime(new Shift(employeeStart, employeeEnd));
+
+                if (shiftDao.getByTime(shiftObj) != null) {
+                    shift = shiftDao.getByTime(shiftObj);
                 } else {
-                    shift = shiftDao.add(new Shift(employeeStart, employeeEnd));
+                    shift = shiftDao.add(shiftObj);
                 }
+
             }
 
-            if (addressDao.getByParams(new Address(employeeAddress, district)) != null) {
-                address = addressDao.getByParams(new Address(employeeAddress, district));
+            Address addressObj = new Address(employeeAddress, district);
+            if (addressDao.getByParams(addressObj) != null) {
+                address = addressDao.getByParams(addressObj);
             } else {
-                address = addressDao.add(new Address(employeeAddress, district));
+                address = addressDao.add(addressObj);
             }
 
             Employee employee = employeeDao.add(new Employee(employeeFirstName, employeeSecondName, employeePatronymic,
                     employeeAge, address, shift));
 
-            response.sendRedirect("/app/employee?id="+employee.getId());
+            response.sendRedirect("/app/employee?id=" + employee.getId());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

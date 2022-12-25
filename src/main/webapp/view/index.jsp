@@ -22,7 +22,7 @@
         <h2 class="sidebar__title">Фильтр записей</h2>
 
         <form class="form" id="filterForm" action="/app/filter" name="filterForm">
-             <div class="form__fields">
+            <div class="form__fields">
 
                 <div class="district_selects">
                     <label class="form__field">
@@ -251,12 +251,12 @@
     <% } %>
 
     <% if (request.getParameter("filter_sortType") != null) {%>
-        document.querySelector(".sidebar").querySelector(".t_input").value =
-        <%= request.getParameter("filter_sortType") %>;
+    document.querySelector(".sidebar").querySelector(".t_input").value =
+    <%= request.getParameter("filter_sortType") %>;
     <% } %>
 
     <% if (request.getParameter("search_field") != null) {%>
-        document.querySelector(".search").querySelector(".search-input").value =
+    document.querySelector(".search").querySelector(".search-input").value =
         "<%= request.getParameter("search_field") %>";
     <% } %>
 </script>

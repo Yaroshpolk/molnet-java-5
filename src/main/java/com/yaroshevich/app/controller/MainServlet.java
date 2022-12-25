@@ -2,7 +2,7 @@ package com.yaroshevich.app.controller;
 
 import com.yaroshevich.app.dao.DistrictDao;
 import com.yaroshevich.app.dao.EmployeeDao;
-import com.yaroshevich.app.dataObject.FilterDataObject;
+import com.yaroshevich.app.filter.FilterDataObject;
 import com.yaroshevich.app.model.District;
 import com.yaroshevich.app.model.Employee;
 import jakarta.servlet.ServletException;
@@ -19,6 +19,7 @@ import java.util.List;
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         try {
 
