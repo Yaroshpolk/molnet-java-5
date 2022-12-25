@@ -1,5 +1,6 @@
 package com.yaroshevich.app.controller;
 
+import com.yaroshevich.app.dataObject.FilterDataObject;
 import com.yaroshevich.app.model.Employee;
 import com.yaroshevich.app.util.EmployeeExcelGenerator;
 import com.yaroshevich.app.util.PropertiesHelper;
@@ -25,7 +26,7 @@ public class DownloadExcelServlet extends HttpServlet {
         response.setHeader("Content-Disposition", String.format("attachment; filename=%s.xlsx", fileName));
 
         try (ServletOutputStream out = response.getOutputStream()) {
-            excelGenerator.generateExcel(out, (List<Employee>) request.getSession().getAttribute("employees"));
+            excelGenerator.generateExcel(out, (FilterDataObject) request.getSession().getAttribute("filterData"));
         }
 
     }

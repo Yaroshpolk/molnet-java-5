@@ -1,5 +1,7 @@
 package com.yaroshevich.app.util;
 
+import com.yaroshevich.app.dao.EmployeeDao;
+import com.yaroshevich.app.dataObject.FilterDataObject;
 import com.yaroshevich.app.model.Employee;
 import jakarta.servlet.ServletOutputStream;
 import org.apache.poi.ss.usermodel.Cell;
@@ -10,14 +12,19 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class EmployeeExcelGenerator {
 
-    public void generateExcel(ServletOutputStream out, List<Employee> employees) {
+    public void generateExcel(ServletOutputStream out, FilterDataObject filterDataObject) {
         try (XSSFWorkbook workbook = new XSSFWorkbook()) {
+
+            EmployeeDao employeeDao = new EmployeeDao();
+
+            List<Employee> employees = employeeDao.getWithFilter(filterDataObject);
 
             Map<Integer, String> fields = new HashMap<Integer, String>() {{
                 put(0, "Фамилия");
@@ -72,7 +79,7 @@ public class EmployeeExcelGenerator {
 
             workbook.write(out);
 
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }

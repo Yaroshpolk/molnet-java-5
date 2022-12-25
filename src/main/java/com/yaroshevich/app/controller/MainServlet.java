@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "MainServlet", value = "/app")
+@WebServlet(name = "MainServlet", value = "/app/")
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,8 +26,9 @@ public class MainServlet extends HttpServlet {
 
             List<Employee> employees;
 
-            if (request.getAttribute("filteredData") != null) {
-                employees = employeeDao.getWithFilter((FilterDataObject) request.getAttribute("filteredData"));
+            if (request.getSession().getAttribute("filterData") != null) {
+                employees =
+                        employeeDao.getWithFilter((FilterDataObject) request.getSession().getAttribute("filterData"));
             } else {
                 employees = employeeDao.getAll();
             }
