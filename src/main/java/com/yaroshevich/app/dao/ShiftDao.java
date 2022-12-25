@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.time.LocalTime;
 import java.util.List;
 
-public class ShiftDao implements Dao<Shift> {
+public class ShiftDao {
 
     private static final String SHIFT_BY_ID_SQL = "SELECT * FROM shifts WHERE id = ?";
 
@@ -19,7 +19,7 @@ public class ShiftDao implements Dao<Shift> {
 
     private static final String ADD_SHIFT_SQL = "INSERT INTO shifts(start_at, end_at) VALUES ( ?, ?)";
 
-    @Override
+
     public List<Shift> getAll() throws SQLException {
         Connection connection = DBConnector.getConnection();
         Statement statement = connection.createStatement();
@@ -31,7 +31,7 @@ public class ShiftDao implements Dao<Shift> {
         return resultList;
     }
 
-    @Override
+
     public Shift getById(int id) throws SQLException {
         Connection connection = DBConnector.getConnection();
         PreparedStatement statement = connection.prepareStatement(SHIFT_BY_ID_SQL);

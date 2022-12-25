@@ -47,9 +47,9 @@ public class AddEmployeeServlet extends HttpServlet {
 
             district = districtDao.getById(employeeDistrictId);
 
-            Shift shiftObj = new Shift(employeeStart, employeeEnd);
-            if (!employeeStart.equals("") && !employeeEnd.equals("")) {
 
+            if (!employeeStart.equals("") && !employeeEnd.equals("")) {
+                Shift shiftObj = new Shift(employeeStart, employeeEnd);
                 if (shiftDao.getByTime(shiftObj) != null) {
                     shift = shiftDao.getByTime(shiftObj);
                 } else {

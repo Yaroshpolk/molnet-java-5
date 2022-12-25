@@ -10,8 +10,8 @@ public class Shift {
 
     public Shift(int id, String start, String end) {
         this.id = id;
-        this.start = start.substring(0, 5);
-        this.end = end.substring(0, 5);
+        this.start = start;
+        this.end = end;
     }
 
     public Shift(String start, String end) {
@@ -25,11 +25,11 @@ public class Shift {
     }
 
     public String getStart() {
-        return start;
+        return start == null ? null : start.substring(0, 5);
     }
 
     public String getEnd() {
-        return end;
+        return end == null ? null : end.substring(0, 5);
     }
 
     @Override

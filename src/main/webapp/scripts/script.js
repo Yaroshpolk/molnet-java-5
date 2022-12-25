@@ -4,17 +4,17 @@ let closeBtn = document.getElementById('closePopupBtn');
 let openBtn = document.getElementById('openPopupBtn');
 
 let addForm = document.getElementById('addEmployeeForm');
-let addButton = document.getElementById('addButton');
 
 const openPopup = (evt) => {
     evt.preventDefault();
     popup.classList.remove('popup_hidden');
-    addForm.reset();
 }
 
 const hidePopup = (evt) => {
     evt.preventDefault();
     popup.classList.add('popup_hidden');
+    addForm.reset();
+    clearFormErrors(addForm)
 }
 
 closeBtn.addEventListener('click', hidePopup);

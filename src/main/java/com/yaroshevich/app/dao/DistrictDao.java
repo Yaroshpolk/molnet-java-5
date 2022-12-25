@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DistrictDao implements Dao<District> {
+public class DistrictDao {
 
     private static final String DISTRICT_SQL = "SELECT\n" +
             "    districts.id as district_id,\n" +
@@ -20,7 +20,7 @@ public class DistrictDao implements Dao<District> {
             "        JOIN districts d on d.id = districts.id\n" +
             "        JOIN districts d2 on d2.id = d.id\n";
 
-    @Override
+
     public List<District> getAll() throws SQLException {
         Connection connection = DBConnector.getConnection();
         PreparedStatement statement = connection.prepareStatement(DISTRICT_SQL);
@@ -32,7 +32,7 @@ public class DistrictDao implements Dao<District> {
         return resultList;
     }
 
-    @Override
+
     public District getById(int id) throws SQLException {
         Connection connection = DBConnector.getConnection();
         PreparedStatement statement = connection.prepareStatement(DISTRICT_SQL + "WHERE districts.id = ?");

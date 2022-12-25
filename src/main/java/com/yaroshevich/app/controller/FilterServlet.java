@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "FilterServlet", value = "/app/filter")
+@WebServlet(name = "FilterServlet", value = "/app/main/filter")
 public class FilterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +23,8 @@ public class FilterServlet extends HttpServlet {
         FilterDataObject filterData = new FilterDataObject(districtId, regionId, sortType, search);
         request.getSession().setAttribute("filterData", filterData);
 
-        request.getRequestDispatcher("/app/").forward(request, response);
+        request.getRequestDispatcher("/app/main").forward(request, response);
+
 
     }
 

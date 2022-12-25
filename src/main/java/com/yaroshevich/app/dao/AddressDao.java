@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AddressDao implements Dao<Address> {
+public class AddressDao {
 
     private static final String ADDRESS_SQL =
             "SELECT home_addresses.id as address_id,\n" +
@@ -36,7 +36,7 @@ public class AddressDao implements Dao<Address> {
         return resultList;
     }
 
-    @Override
+
     public Address getById(int id) throws SQLException {
         Connection connection = DBConnector.getConnection();
         PreparedStatement statement = connection.prepareStatement(ADDRESS_SQL + " WHERE home_addresses.id = ?");

@@ -76,4 +76,14 @@ public class EmployeeMapper implements Mapper<Employee> {
         return result;
     }
 
+    public int mapCount(ResultSet resultSet) throws SQLException {
+        int result = 0;
+
+        while (resultSet.next()) {
+            result = resultSet.getInt("employee_count");
+        }
+
+        return result;
+    }
+
 }

@@ -6,12 +6,13 @@
 <% List<District> districts = (List<District>) request.getAttribute("districts"); %>
 <% List<District> regions = (List<District>) request.getAttribute("regions"); %>
 <% session.setAttribute("employees", employees); %>
+<% int rowsCount = (int) session.getAttribute("rowsCount"); %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Тестовое задание № 7</title>
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../../styles/main.css">
 </head>
 <body>
 <div class="content">
@@ -21,7 +22,7 @@
 
         <h2 class="sidebar__title">Фильтр записей</h2>
 
-        <form class="form" id="filterForm" action="/app/filter" name="filterForm">
+        <form class="form" id="filterForm" action="/app/main/filter" name="filterForm">
             <div class="form__fields">
 
                 <div class="district_selects">
@@ -111,6 +112,31 @@
                 <% } %>
 
             </ul>
+            <div class="pagination">
+                <ul class="pagination__list">
+                    <% for (int i = 0; i <= Math.floor(rowsCount / 10); i++) { %>
+                    <li class="pagination__item">
+                        <a class="pagination__btn btn btn_blue<%= (int) request.getAttribute("page") == i ?
+                        " pagination__btn_curr" : ""%>"
+                                <%
+                                    String newUrl = "";
+                                    if (request.getQueryString() != null) {
+                                        if (request.getQueryString().contains("page")) {
+                                            int index = request.getQueryString().indexOf("page");
+                                            newUrl = request.getQueryString().substring(0, index);
+                                        } else {
+                                            newUrl = request.getQueryString();
+                                        }
+                                    }
+                                %>
+                           href="/app/main?<%= newUrl +
+                           (request.getParameterMap().size() - 1 > 0 ? "&page=" + i : "page=" + i)%>">
+                            <%= i //TODO фикс дублирования &&&%>
+                        </a>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
             <div class="employees__footer">
                 <a class="btn btn_blue" href="/app/charts" target="_self">Графики</a>
                 <a class="btn btn_blue" href="/app/downloadExcel" target="_blank">Скачать excel файл</a>
@@ -207,7 +233,7 @@
     </div>
 </div>
 
-<script src="../scripts/script.js"></script>
+<script src="../../scripts/script.js"></script>
 
 <script>
     let selects = document.querySelectorAll(".district_selects");
@@ -259,6 +285,7 @@
     document.querySelector(".search").querySelector(".search-input").value =
         "<%= request.getParameter("search_field") %>";
     <% } %>
+
 </script>
 </body>
 </html>

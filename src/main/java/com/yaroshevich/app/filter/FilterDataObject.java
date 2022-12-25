@@ -53,7 +53,7 @@ public class FilterDataObject {
         return res;
     }
 
-    public String generateQuery() {
+    public String generateQuery(boolean grouping) {
         String res = "";
 
         if (this.districtId != 0 && this.regionId != 0) {
@@ -73,7 +73,9 @@ public class FilterDataObject {
             }
         }
 
-        res += this.filterQr;
+        if (grouping) {
+            res += this.filterQr;
+        }
 
         return res;
     }

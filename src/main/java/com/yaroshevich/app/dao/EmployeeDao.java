@@ -9,9 +9,9 @@ import java.sql.*;
 import java.util.List;
 import java.util.Map;
 
-public class EmployeeDao implements Dao<Employee> {
+public class EmployeeDao {
 
-    private static final String EMPLOYEE_SQL = "SELECT employees.id as employee_id,\n" +
+    private static final String EMPLOYEE_SQL = " SELECT employees.id as employee_id,\n" +
             "       first_name,\n" +
             "       last_name,\n" +
             "       patronymic,\n" +
@@ -31,26 +31,27 @@ public class EmployeeDao implements Dao<Employee> {
             "         JOIN districts d2 on d2.id = d.parent_id\n" +
             "         LEFT JOIN shifts s on s.id = employees.shift_id\n";
 
-    private static final String ADD_EMPLOYEE_SQL = "INSERT INTO employees(first_name, last_name, patronymic, age, " +
+    private static final String ADD_EMPLOYEE_SQL = " INSERT INTO employees(first_name, last_name, patronymic, age, " +
             "address_id, shift_id) VALUES (?, ?, ?, ?, ?, ?)";
 
-    private static final String COUNT_AGES_SQL = "SELECT age, count(age) FROM employees GROUP BY age";
+    private static final String COUNT_AGES_SQL = " SELECT age, COUNT(age) FROM employees GROUP BY age";
 
-    public List<Employee> getAll() throws SQLException {
+    private static final String LIMIT_OFFSET_SQL = " LIMIT ? OFFSET ?";
+
+    private static final String COUNT_EMPLOYEES_SQL = "SELECT count(*) as employee_count\n" +
+            "FROM employees\n" +
+            "         JOIN home_addresses ha on ha.id = employees.address_id\n" +
+            "         JOIN districts d on d.id = ha.district_id\n" +
+            "         JOIN districts d2 on d2.id = d.parent_id\n" +
+            "         LEFT JOIN shifts s on s.id = employees.shift_id\n";
+
+    public List<Employee> getWithFilter(FilterDataObject filter, int offset, int limit) throws SQLException {
         Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(EMPLOYEE_SQL +
-                "ORDER BY last_name, first_name, patronymic");
+        PreparedStatement statement = connection.prepareStatement(EMPLOYEE_SQL + filter.generateQuery(true)
+                + LIMIT_OFFSET_SQL);
 
-        EmployeeMapper mapper = new EmployeeMapper();
-        List<Employee> resultList = mapper.map(statement.executeQuery());
-
-        connection.close();
-        return resultList;
-    }
-
-    public List<Employee> getWithFilter(FilterDataObject filter) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(EMPLOYEE_SQL + filter.generateQuery());
+        statement.setInt(1, limit);
+        statement.setInt(2, offset);
 
         EmployeeMapper mapper = new EmployeeMapper();
         List<Employee> resultList = mapper.map(statement.executeQuery());
@@ -101,6 +102,18 @@ public class EmployeeDao implements Dao<Employee> {
 
         EmployeeMapper mapper = new EmployeeMapper();
         Map<Integer, Integer> result = mapper.mapAges(statement.executeQuery(COUNT_AGES_SQL));
+
+        connection.close();
+        return result;
+    }
+
+    public int countRows(FilterDataObject filter) throws SQLException {
+        Connection connection = DBConnector.getConnection();
+        Statement statement = connection.createStatement();
+
+        EmployeeMapper mapper = new EmployeeMapper();
+        int result = mapper.mapCount(statement.executeQuery(COUNT_EMPLOYEES_SQL +
+                filter.generateQuery(false)));
 
         connection.close();
         return result;
