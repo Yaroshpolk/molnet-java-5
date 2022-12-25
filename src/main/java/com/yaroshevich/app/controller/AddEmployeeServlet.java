@@ -27,7 +27,8 @@ public class AddEmployeeServlet extends HttpServlet {
         String employeeFirstName = request.getParameter("employee_firstName");
         String employeeSecondName = request.getParameter("employee_lastName");
         String employeePatronymic = request.getParameter("employee_patronymic");
-        int employeeAge = Integer.parseInt(request.getParameter("employee_age"));
+        Integer employeeAge = request.getParameter("employee_age").equals("") ?
+                null : Integer.valueOf(request.getParameter("employee_age"));
         String employeeAddress = request.getParameter("employee_address");
         int employeeParentDistrictId = Integer.parseInt(request.getParameter("employee_district"));
         int employeeDistrictId = Integer.parseInt(request.getParameter("employee_region"));

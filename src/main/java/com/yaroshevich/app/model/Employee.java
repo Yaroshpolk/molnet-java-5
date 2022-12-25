@@ -10,13 +10,13 @@ public class Employee {
 
     private final String patronymic;
 
-    private final int age;
+    private final Integer age;
 
     private final Address address;
 
     private final Shift shift;
 
-    public Employee(long id, String firstName, String secondName, String patronymic, int age, Address address, Shift shift) {
+    public Employee(long id, String firstName, String secondName, String patronymic, Integer age, Address address, Shift shift) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -26,7 +26,7 @@ public class Employee {
         this.shift = shift;
     }
 
-    public Employee(String firstName, String secondName, String patronymic, int age, Address address, Shift shift) {
+    public Employee(String firstName, String secondName, String patronymic, Integer age, Address address, Shift shift) {
         this.id = 0;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -52,7 +52,7 @@ public class Employee {
         return patronymic;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 

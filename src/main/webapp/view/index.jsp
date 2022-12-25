@@ -22,7 +22,7 @@
         <h2 class="sidebar__title">Фильтр записей</h2>
 
         <form class="form" id="filterForm" action="/app/filter" name="filterForm">
-            <div class="form__fields">
+             <div class="form__fields">
 
                 <div class="district_selects">
                     <label class="form__field">
@@ -153,7 +153,7 @@
                 <label class="form__field">
                     <p class="form__subtitle">Возраст</p>
                     <input type="number" class="form__input" placeholder=""
-                           name="employee_age" required>
+                           name="employee_age">
                 </label>
             </div>
 
@@ -167,7 +167,7 @@
                 <div class="district_selects">
                     <label class="form__field">
                         <p class="form__subtitle">Округ</p>
-                        <select class="form__select form__input s_input" name="employee_district">
+                        <select class="form__select form__input s_input" name="employee_district" required>
                             <option value="0">-----</option>
                             <% for (District district : districts) { %>
 
@@ -181,7 +181,7 @@
 
                     <label class="form__field">
                         <p class="form__subtitle">Район</p>
-                        <select class="form__select form__input r_input" name="employee_region">
+                        <select class="form__select form__input r_input" name="employee_region" required>
                             <option value="0">-----</option>
                         </select>
                     </label>
@@ -251,12 +251,12 @@
     <% } %>
 
     <% if (request.getParameter("filter_sortType") != null) {%>
-    document.querySelector(".sidebar").querySelector(".t_input").value =
-    <%= request.getParameter("filter_sortType") %>;
+        document.querySelector(".sidebar").querySelector(".t_input").value =
+        <%= request.getParameter("filter_sortType") %>;
     <% } %>
 
     <% if (request.getParameter("search_field") != null) {%>
-    document.querySelector(".search").querySelector(".search-input").value =
+        document.querySelector(".search").querySelector(".search-input").value =
         "<%= request.getParameter("search_field") %>";
     <% } %>
 </script>

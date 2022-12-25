@@ -41,6 +41,12 @@ const checkInputValidity = (item) => {
     } else if (item.maxLength < item.value.length && item.maxLength !== -1) {
         item.parentElement.append(createErrorElem("Максимальная длинна текста " + item.maxLength + " символа"))
     }
+
+    if (item.required && item.tagName === 'SELECT') {
+        if (item.value === "0") {
+            item.parentElement.append(createErrorElem("Это поле обязательно к заполнению"))
+        }
+    }
 }
 
 const formValidate = (evt) => {
