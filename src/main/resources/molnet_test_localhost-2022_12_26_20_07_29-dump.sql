@@ -63,9 +63,9 @@ CREATE TABLE public.employees (
     id integer NOT NULL,
     first_name character varying(20) NOT NULL,
     last_name character varying(30) NOT NULL,
-    patronymic character varying(20),
-    age integer NOT NULL,
-    address_id integer,
+    patronymic character varying(20) NOT NULL,
+    age integer,
+    address_id integer NOT NULL,
     shift_id integer
 );
 
@@ -165,6 +165,42 @@ ALTER SEQUENCE public.shifts_id_seq OWNED BY public.shifts.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    login character varying(30) NOT NULL,
+    password text NOT NULL,
+    user_name character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
 -- Name: districts id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -190,6 +226,13 @@ ALTER TABLE ONLY public.home_addresses ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.shifts ALTER COLUMN id SET DEFAULT nextval('public.shifts_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
@@ -261,9 +304,10 @@ COPY public.districts (id, district_name, parent_id) FROM stdin;
 --
 
 COPY public.employees (id, first_name, last_name, patronymic, age, address_id, shift_id) FROM stdin;
+65	dsaasd	asd	asdasd	23	42	\N
+66	sda	asdsdasd	asdasd	\N	45	\N
 8	Селиверст	Карпов	Юрьевич	32	5	5
 9	Любовь	Васютина	Кирилловна	21	6	6
-10	Евдокия	Наварская	\N	43	7	6
 11	Флорентина	Жукова	Александровна	20	8	7
 12	Христофор	Дроздов	Тарасович	24	9	8
 13	Прохор	Кропотов	Александрович	21	10	7
@@ -273,6 +317,7 @@ COPY public.employees (id, first_name, last_name, patronymic, age, address_id, s
 17	Кристина	Шершова	Львовна	39	13	6
 18	Игнатий	Доценко	Эдуардович	23	14	7
 19	Ерофей	Ефимов	Тарасович	19	15	5
+10	Евдокия	Наварская	Сергеевна	43	7	6
 \.
 
 
@@ -292,6 +337,16 @@ COPY public.home_addresses (id, address, district_id) FROM stdin;
 13	улица Григория Чорос-Гуркина, 33, Горно-Алтайск, Республика Алтай	42
 14	улица Павла Кучияк, 17, Горно-Алтайск, Республика Алтай	42
 15	СНТ Садовод, 73, Горно-Алтайск, Республика Алтай	42
+32	ул.Пушкина, д.17	18
+37	фывфывфыв	10
+38	фывфвфывы	21
+39	asdasd	10
+40	фывфыв	9
+41	asdasdasd	9
+42	asasdasd	9
+43	фывфывфыв	12
+44	asdasd	9
+45	asasd	9
 \.
 
 
@@ -304,6 +359,19 @@ COPY public.shifts (id, start_at, end_at) FROM stdin;
 6	10:00:00	18:00:00
 7	11:00:00	19:00:00
 8	12:00:00	20:00:00
+9	07:44:26	07:45:33
+19	09:00:00	18:00:00
+21	09:00:00	19:59:00
+22	22:02:00	12:12:00
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, login, password, user_name) FROM stdin;
+5	admin1	70B23EBD54A4C25AB267:D12DA124897B6856DE35F5C672BED86F39F38771F0BAF195CCFFB4510561844B74EF1C13D48A77C93861BC2D2ECB3FED3211380FB39FA4239B7923C312FCC1F5	Владислав
 \.
 
 
@@ -318,21 +386,28 @@ SELECT pg_catalog.setval('public.districts_id_seq', 56, true);
 -- Name: employees_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.employees_id_seq', 19, true);
+SELECT pg_catalog.setval('public.employees_id_seq', 66, true);
 
 
 --
 -- Name: home_addresses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.home_addresses_id_seq', 15, true);
+SELECT pg_catalog.setval('public.home_addresses_id_seq', 45, true);
 
 
 --
 -- Name: shifts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.shifts_id_seq', 8, true);
+SELECT pg_catalog.setval('public.shifts_id_seq', 22, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 5, true);
 
 
 --
@@ -365,6 +440,22 @@ ALTER TABLE ONLY public.home_addresses
 
 ALTER TABLE ONLY public.shifts
     ADD CONSTRAINT shifts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pk UNIQUE (login);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
