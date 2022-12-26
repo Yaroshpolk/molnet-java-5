@@ -1,24 +1,4 @@
-let popup = document.getElementById('employeePopup');
-
-let closeBtn = document.getElementById('closePopupBtn');
-let openBtn = document.getElementById('openPopupBtn');
-
-let addForm = document.getElementById('addEmployeeForm');
-
-const openPopup = (evt) => {
-    evt.preventDefault();
-    popup.classList.remove('popup_hidden');
-}
-
-const hidePopup = (evt) => {
-    evt.preventDefault();
-    popup.classList.add('popup_hidden');
-    addForm.reset();
-    clearFormErrors(addForm)
-}
-
-closeBtn.addEventListener('click', hidePopup);
-openBtn.addEventListener('click', openPopup);
+const form = document.querySelector("form");
 
 const createErrorElem = (txt) => {
     let elem = document.createElement("span");
@@ -46,10 +26,10 @@ const checkInputValidity = (item) => {
         item.parentElement.append(createErrorElem("Это поле обязательно к заполнению"))
         itemValidity = false;
     } else if (item.minLength > item.value.length && item.minLength !== -1) {
-        item.parentElement.append(createErrorElem("Минимальная длинна " + item.minLength + " символов"))
+        item.parentElement.append(createErrorElem("Минимальная длинна текста " + item.minLength + " символа"))
         itemValidity = false;
     } else if (item.maxLength < item.value.length && item.maxLength !== -1) {
-        item.parentElement.append(createErrorElem("Максимальная длинна " + item.maxLength + " символов"))
+        item.parentElement.append(createErrorElem("Максимальная длинна текста " + item.maxLength + " символа"))
         itemValidity = false;
     }
 
@@ -79,9 +59,7 @@ const formValidate = (evt) => {
 
     if (form.querySelectorAll(".form__error").length === 0) {
         form.submit();
-        popup.classList.add('popup_hidden');
     }
 }
 
-addForm.addEventListener('submit', formValidate)
-
+form.addEventListener('submit', formValidate)

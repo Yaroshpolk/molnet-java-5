@@ -256,6 +256,10 @@ body {
     margin-top: 10px;
 }
 
+.form__title {
+    text-align: center;
+}
+
 .form__subtitle {
     margin: 0;
 }
@@ -418,4 +422,32 @@ body {
 
 .pagination__btn_curr {
     background-color: rgba(128, 128, 128, 0.29);
+}
+
+.auth {
+    width: 400px;
+    margin: auto;
+    -webkit-box-shadow: 0 0 23px 1px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0 0 23px 1px rgba(34, 60, 80, 0.2);
+    box-shadow: 0 0 23px 1px rgba(34, 60, 80, 0.2);
+}
+
+.auth__form {
+    padding: 25px 35px;
+}
+
+.auth__form-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+    text-align: center;
+}
+
+.auth__form-footer .btn {
+    margin: auto;
+    padding: 10px 75px;
+}
+
+.auth__form-footer .link {
+    margin-top: 10px;
 }
