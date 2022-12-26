@@ -25,6 +25,10 @@
                   </label>
               </div>
 
+              <div class="error <%= request.getAttribute("error") == null ? "error_hidden" : "" %>">
+                  <p class="error__message">Ошибка: Неверное имя пользователя или пароль</p>
+              </div>
+
               <div class="auth__form-footer">
                   <input type="submit" value="Войти" class="btn btn_blue">
                   <a href="/registration" class="link">Зарегистрироваться</a>

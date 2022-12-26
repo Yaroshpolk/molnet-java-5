@@ -78,7 +78,7 @@ public class EmployeeDao {
         statement.setString(1, employee.getFirstName());
         statement.setString(2, employee.getSecondName());
         statement.setString(3, employee.getPatronymic());
-        statement.setInt(4, employee.getAge());
+        statement.setObject(4, (employee.getAge() == null ? null : employee.getAge()));
         statement.setInt(5, employee.getAddress().getId());
         statement.setObject(6, (employee.getShift() == null ? null : employee.getShift().getId()));
 

@@ -25,7 +25,7 @@ public class EmployeeExcelGenerator {
             EmployeeDao employeeDao = new EmployeeDao();
 
             List<Employee> employees = employeeDao.getWithFilter(filterDataObject, 0, Integer.MAX_VALUE);
-            System.out.println(employees);
+
             Map<Integer, String> fields = new HashMap<Integer, String>() {{
                 put(0, "Фамилия");
                 put(1, "Имя");

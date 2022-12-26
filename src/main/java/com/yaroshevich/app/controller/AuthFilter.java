@@ -2,7 +2,7 @@ package com.yaroshevich.app.controller;
 
 import com.yaroshevich.app.model.User;
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 

@@ -18,7 +18,6 @@
 <div class="content">
 
     <div class="sidebar">
-        <button class="btn btn_blue switcher"> <</button>
 
         <h2 class="sidebar__title">Фильтр записей</h2>
 

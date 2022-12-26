@@ -451,3 +451,24 @@ body {
 .auth__form-footer .link {
     margin-top: 10px;
 }
+
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255 0 0 / 8%);
+    border: 1px solid rgb(255 0 0 / 24%);
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.error_hidden {
+    display: none;
+}
+
+.error__message {
+    margin: 0;
+}

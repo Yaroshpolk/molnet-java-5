@@ -31,6 +31,10 @@
                 </label>
             </div>
 
+            <div class="error <%= request.getAttribute("error") == null ? "error_hidden" : "" %>">
+                <p class="error__message">Ошибка: Пользователь с указанным логином уже существует</p>
+            </div>
+
             <div class="auth__form-footer">
                 <input type="submit" value="Зарегистрироваться" class="btn btn_blue">
                 <a href="/login" class="link">Авторизация</a>
@@ -38,6 +42,7 @@
         </form>
     </div>
 </div>
+
 <script src="../../scripts/authForms.js"></script>
 </body>
 </html>
