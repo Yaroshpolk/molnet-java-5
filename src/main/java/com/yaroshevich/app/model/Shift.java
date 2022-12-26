@@ -14,16 +14,22 @@ public class Shift {
         this.end = end;
     }
 
+    public Shift(String start, String end) {
+        this.id = 0;
+        this.start = start;
+        this.end = end;
+    }
+
     public int getId() {
         return id;
     }
 
     public String getStart() {
-        return start;
+        return start == null ? null : start.substring(0, 5);
     }
 
     public String getEnd() {
-        return end;
+        return end == null ? null : end.substring(0, 5);
     }
 
     @Override

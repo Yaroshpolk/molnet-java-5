@@ -6,15 +6,18 @@ public class Address {
 
     private final String address;
 
-    private final String district;
+    private final District district;
 
-    private final String region;
-
-    public Address(int id, String address, String district, String region) {
+    public Address(int id, String address, District district) {
         this.id = id;
         this.address = address;
         this.district = district;
-        this.region = region;
+    }
+
+    public Address(String address, District district) {
+        this.id = 0;
+        this.address = address;
+        this.district = district;
     }
 
     public int getId() {
@@ -25,12 +28,8 @@ public class Address {
         return address;
     }
 
-    public String getDistrict() {
+    public District getDistrict() {
         return district;
-    }
-
-    public String getRegion() {
-        return region;
     }
 
     @Override
@@ -38,8 +37,7 @@ public class Address {
         return "Address{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                ", district='" + district + '\'' +
-                ", region='" + region + '\'' +
+                ", district=" + district +
                 '}';
     }
 }

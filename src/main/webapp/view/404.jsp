@@ -14,7 +14,7 @@
     <p class="subtitle">
         Ресурс не найден
     </p>
-    <a href="/app" class="link">На главную</a>
+    <a href="/app/main" class="link">На главную</a>
 </div>
 
 </body>

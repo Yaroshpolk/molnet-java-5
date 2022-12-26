@@ -14,10 +14,11 @@
 
     String name = employee.getSecondName() + " " + employee.getFirstName() + " " + employee.getPatronymic();
     String address = employee.getAddress().getAddress() + ", "
-            + employee.getAddress().getDistrict() + ", " + employee.getAddress().getRegion();
-    String shift = employee.getShift().getStart() + " - " + employee.getShift().getEnd();
+            + employee.getAddress().getDistrict().getName() + ", " + employee.getAddress().getDistrict().getParent().getName();
+    String shift = employee.getShift().getStart() == null ? "Не указан" :
+            employee.getShift().getStart() + " - " + employee.getShift().getEnd();
 %>
-<div class="content">
+<div class="content prof">
     <div class="profile">
         <div class="profile__avatar">
             <p class="profile__avatar-txt">Фото</p>
@@ -28,7 +29,7 @@
             <ul class="profile__list">
                 <li class="profile__item">Адрес: <%= address %>
                 </li>
-                <li class="profile__item">Режим работы: <%= shift %>
+                <li class="profile__item">График работы: <%= shift %>
                 </li>
             </ul>
         </div>

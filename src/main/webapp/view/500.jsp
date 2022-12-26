@@ -14,7 +14,7 @@
     <p class="subtitle">
         О нет! На сервере возникла ошибка!
     </p>
-    <a href="/app" class="link">На главную</a>
+    <a href="/app/main" class="link">На главную</a>
 </div>
 
 </body>

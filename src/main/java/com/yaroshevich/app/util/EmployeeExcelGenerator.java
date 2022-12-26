@@ -1,6 +1,7 @@
 package com.yaroshevich.app.util;
 
 import com.yaroshevich.app.dao.EmployeeDao;
+import com.yaroshevich.app.filter.FilterDataObject;
 import com.yaroshevich.app.model.Employee;
 import jakarta.servlet.ServletOutputStream;
 import org.apache.poi.ss.usermodel.Cell;
@@ -12,26 +13,27 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EmployeeExcelGenerator {
 
-    public void generateExcel(ServletOutputStream out) {
+    public void generateExcel(ServletOutputStream out, FilterDataObject filterDataObject) {
         try (XSSFWorkbook workbook = new XSSFWorkbook()) {
 
-            EmployeeDao dao = new EmployeeDao();
-            ArrayList<Employee> employees = (ArrayList<Employee>) dao.getAll();
+            EmployeeDao employeeDao = new EmployeeDao();
+
+            List<Employee> employees = employeeDao.getWithFilter(filterDataObject, 0, Integer.MAX_VALUE);
 
             Map<Integer, String> fields = new HashMap<Integer, String>() {{
-                put(0, "Имя");
-                put(1, "Фамилия");
+                put(0, "Фамилия");
+                put(1, "Имя");
                 put(2, "Отчество");
                 put(3, "Возраст");
                 put(4, "Адрес");
                 put(5, "Район");
-                put(6, "Регион");
+                put(6, "Округ");
                 put(7, "Начало смены");
                 put(8, "Конец смены");
             }};
@@ -57,13 +59,13 @@ public class EmployeeExcelGenerator {
             int rowIndex = 1;
             for (Employee employee : employees) {
                 Row row = sheet.createRow(rowIndex);
-                row.createCell(0).setCellValue(employee.getFirstName());
-                row.createCell(1).setCellValue(employee.getSecondName());
+                row.createCell(0).setCellValue(employee.getSecondName());
+                row.createCell(1).setCellValue(employee.getFirstName());
                 row.createCell(2).setCellValue(employee.getPatronymic());
                 row.createCell(3).setCellValue(employee.getAge());
                 row.createCell(4).setCellValue(employee.getAddress().getAddress());
-                row.createCell(5).setCellValue(employee.getAddress().getDistrict());
-                row.createCell(6).setCellValue(employee.getAddress().getRegion());
+                row.createCell(5).setCellValue(employee.getAddress().getDistrict().getName());
+                row.createCell(6).setCellValue(employee.getAddress().getDistrict().getParent().getName());
                 row.createCell(7).setCellValue(employee.getShift().getStart());
                 row.createCell(8).setCellValue(employee.getShift().getEnd());
 
@@ -77,7 +79,7 @@ public class EmployeeExcelGenerator {
 
             workbook.write(out);
 
-        } catch (SQLException | IOException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }

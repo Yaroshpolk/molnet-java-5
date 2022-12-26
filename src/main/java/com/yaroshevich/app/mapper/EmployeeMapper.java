@@ -1,6 +1,7 @@
 package com.yaroshevich.app.mapper;
 
 import com.yaroshevich.app.model.Address;
+import com.yaroshevich.app.model.District;
 import com.yaroshevich.app.model.Employee;
 import com.yaroshevich.app.model.Shift;
 
@@ -25,17 +26,37 @@ public class EmployeeMapper implements Mapper<Employee> {
 
             int addressId = resultSet.getInt("address_id");
             String address = resultSet.getString("address");
-            String district = resultSet.getString("district");
-            String region = resultSet.getString("region");
 
-            int shiftId = resultSet.getInt("shift_id");
+            int districtId = resultSet.getInt("district_id");
+            String districtName = resultSet.getString("district_name");
+            Integer districtParentId = resultSet.getInt("district_parent_id");
+            String districtParentName = resultSet.getString("district_parent");
+
+            Integer shiftId = resultSet.getInt("shift_id");
             String startAt = resultSet.getString("start_at");
             String endAt = resultSet.getString("end_at");
 
-            Address addressObj = new Address(addressId, address, district, region);
-            Shift shiftObj = new Shift(shiftId, startAt, endAt);
+            District parent;
+            Shift shiftObj;
+
+            if (districtParentId == null) {
+                parent = null;
+            } else {
+                parent = new District(districtParentId, districtParentName);
+            }
+
+            if (shiftId == null) {
+                shiftObj = null;
+            } else {
+                shiftObj = new Shift(shiftId, startAt, endAt);
+            }
+
+            District districtObj = new District(districtId, districtName, parent);
+            Address addressObj = new Address(addressId, address, districtObj);
+
 
             Employee employee = new Employee(id, firstName, lastName, patronymic, age, addressObj, shiftObj);
+
             list.add(employee);
         }
 
@@ -50,6 +71,16 @@ public class EmployeeMapper implements Mapper<Employee> {
             int count = resultSet.getInt("count");
 
             result.put(age, count);
+        }
+
+        return result;
+    }
+
+    public int mapCount(ResultSet resultSet) throws SQLException {
+        int result = 0;
+
+        while (resultSet.next()) {
+            result = resultSet.getInt("employee_count");
         }
 
         return result;
