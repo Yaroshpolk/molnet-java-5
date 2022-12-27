@@ -1,6 +1,7 @@
 <%@ page import="com.yaroshevich.app.model.Employee" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.yaroshevich.app.model.District" %>
+<%@ page import="com.yaroshevich.app.model.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% List<Employee> employees = (List<Employee>) request.getAttribute("employees"); %>
 <% List<District> districts = (List<District>) request.getAttribute("districts"); %>
@@ -19,9 +20,10 @@
 
     <div class="sidebar">
 
-        <h2 class="sidebar__title">Фильтр записей</h2>
-
         <form class="form" id="filterForm" action="/app/main/filter" name="filterForm">
+
+            <h2 class="sidebar__title">Фильтр записей</h2>
+
             <div class="form__fields">
 
                 <div class="district_selects">
@@ -61,6 +63,12 @@
                 <input type="submit" class="btn btn_blue" value="Поиск">
             </div>
         </form>
+
+        <div class="user">
+            <p class="user__name"><%= request.getSession().getAttribute("user") != null ?
+                    ((User) request.getSession().getAttribute("user")).getName() : "" %></p>
+            <a href="/logout" class="user__link">Выйти из учётной записи</a>
+        </div>
     </div>
 
     <div class="data">
@@ -159,19 +167,19 @@
             <div class="form__fields">
                 <label class="form__field">
                     <p class="form__subtitle">Имя</p>
-                    <input type="text" class="form__input" placeholder=""
+                    <input type="text" class="form__input only-chars" placeholder=""
                            name="employee_firstName" maxlength="20" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Фамилия</p>
-                    <input type="text" class="form__input" placeholder=""
+                    <input type="text" class="form__input only-chars" placeholder=""
                            name="employee_lastName" maxlength="30" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Отчество</p>
-                    <input type="text" class="form__input" placeholder=""
+                    <input type="text" class="form__input only-chars" placeholder=""
                            name="employee_patronymic" maxlength="20" minlength="2" required>
                 </label>
 
@@ -264,6 +272,7 @@
         selectS.addEventListener("change", handleDistrictSelectChange);
     })
 
+    // Заполнение селектов сортировки после обновления страницы
     <% if (request.getParameter("filter_district") != null) {%>
     let dInput = selects[0].getElementsByClassName("s_input")[0];
 

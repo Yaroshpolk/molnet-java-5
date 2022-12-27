@@ -372,6 +372,7 @@ body {
     background-color: #F2F1ED;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin-right: 30px;
 }
 
@@ -399,6 +400,11 @@ body {
 .sidebar .form .btn {
     margin-top: 30px;
     padding: 10px 25px;
+}
+
+.sidebar .user {
+    text-align: center;
+    margin: 10px 0;
 }
 
 .district_selects {

@@ -7,13 +7,13 @@ let addForm = document.getElementById('addEmployeeForm');
 
 const openPopup = (evt) => {
     evt.preventDefault();
+    addForm.reset();
     popup.classList.remove('popup_hidden');
 }
 
 const hidePopup = (evt) => {
     evt.preventDefault();
     popup.classList.add('popup_hidden');
-    addForm.reset();
     clearFormErrors(addForm)
 }
 
@@ -83,5 +83,15 @@ const formValidate = (evt) => {
     }
 }
 
-addForm.addEventListener('submit', formValidate)
+addForm.addEventListener('submit', formValidate);
+
+const checkInput = (evt) => {
+    return (evt.charCode > 64 &&
+        evt.charCode < 91) || (evt.charCode > 96 && evt.charCode < 123)
+}
+
+let onlyLettersInputs = addForm.querySelectorAll(".only-chars");
+
+onlyLettersInputs.forEach(item => addEventListener('keypress', checkInput))
+
 

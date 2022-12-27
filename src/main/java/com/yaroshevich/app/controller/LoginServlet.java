@@ -49,6 +49,9 @@ public class LoginServlet extends HttpServlet {
                     if (PasswordUtil.encrypt(password, salt).equals(user.getPassword())) {
                         request.getSession().setAttribute("user", user);
                         response.sendRedirect("/app/main");
+                    } else {
+                        request.setAttribute("error", "user dont exist");
+                        doGet(request, response);
                     }
 
                 } else {
