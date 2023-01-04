@@ -14,19 +14,19 @@
             <div class="form__fields">
                 <label class="form__field">
                     <p class="form__subtitle">Имя</p>
-                    <input type="text" class="form__input" placeholder=""
+                    <input type="text" class="form__input chars" placeholder=""
                            name="user_name" maxlength="30" minlength="4" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Логин</p>
-                    <input type="text" class="form__input" placeholder=""
+                    <input type="text" class="form__input digitsAndChars" placeholder=""
                            name="user_login" maxlength="30" minlength="4" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Пароль</p>
-                    <input type="password" class="form__input" placeholder=""
+                    <input type="password" class="form__input digitsAndChars" placeholder=""
                            name="user_password" maxlength="30" minlength="5" required>
                 </label>
             </div>
@@ -44,5 +44,6 @@
 </div>
 
 <script src="../../scripts/authForms.js"></script>
+<script src="../../scripts/inputsValidation.js"></script>
 </body>
 </html>

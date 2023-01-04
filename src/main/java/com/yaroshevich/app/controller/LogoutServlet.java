@@ -12,15 +12,14 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("filterData") != null) {
+            request.getSession().removeAttribute("filterData");
+        }
+
         if (request.getSession().getAttribute("user") != null) {
             request.getSession().removeAttribute("user");
         }
 
         response.sendRedirect("/login");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

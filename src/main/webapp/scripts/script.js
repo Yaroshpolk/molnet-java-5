@@ -85,13 +85,4 @@ const formValidate = (evt) => {
 
 addForm.addEventListener('submit', formValidate);
 
-const checkInput = (evt) => {
-    return (evt.charCode > 64 &&
-        evt.charCode < 91) || (evt.charCode > 96 && evt.charCode < 123)
-}
-
-let onlyLettersInputs = addForm.querySelectorAll(".only-chars");
-
-onlyLettersInputs.forEach(item => addEventListener('keypress', checkInput))
-
 

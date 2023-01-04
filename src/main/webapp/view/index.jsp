@@ -66,7 +66,8 @@
 
         <div class="user">
             <p class="user__name"><%= request.getSession().getAttribute("user") != null ?
-                    ((User) request.getSession().getAttribute("user")).getName() : "" %></p>
+                    ((User) request.getSession().getAttribute("user")).getName() : "" %>
+            </p>
             <a href="/logout" class="user__link">Выйти из учётной записи</a>
         </div>
     </div>
@@ -167,25 +168,25 @@
             <div class="form__fields">
                 <label class="form__field">
                     <p class="form__subtitle">Имя</p>
-                    <input type="text" class="form__input only-chars" placeholder=""
+                    <input type="text" class="form__input chars" placeholder=""
                            name="employee_firstName" maxlength="20" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Фамилия</p>
-                    <input type="text" class="form__input only-chars" placeholder=""
+                    <input type="text" class="form__input chars" placeholder=""
                            name="employee_lastName" maxlength="30" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Отчество</p>
-                    <input type="text" class="form__input only-chars" placeholder=""
+                    <input type="text" class="form__input chars" placeholder=""
                            name="employee_patronymic" maxlength="20" minlength="2" required>
                 </label>
 
                 <label class="form__field">
                     <p class="form__subtitle">Возраст</p>
-                    <input type="number" class="form__input" placeholder=""
+                    <input type="number" class="form__input digits" placeholder=""
                            name="employee_age">
                 </label>
             </div>
@@ -241,6 +242,7 @@
 </div>
 
 <script src="../../scripts/script.js"></script>
+<script src="../../scripts/inputsValidation.js"></script>
 
 <script>
     let selects = document.querySelectorAll(".district_selects");
