@@ -43,11 +43,15 @@ public class FilterDataObject {
 
     private String createSearchQuery(String searchLine) {
         String res = "";
+        String qr = searchLine
+                .replaceAll(";", " ")
+                .replaceAll("'", " ")
+                .replaceAll("--", " ");
 
-        if (!searchLine.equals("")) {
-            res = "((LOWER(first_name) LIKE '%" + searchLine + "%' or LOWER(last_name) LIKE '%" + searchLine +
-                    "%' or LOWER(patronymic) LIKE '%" + searchLine + "%') OR (CONCAT(LOWER(last_name), ' ', " +
-                    "LOWER(first_name), ' ', LOWER(first_name))) LIKE '%" + searchLine + "%')";
+        if (!qr.equals("")) {
+            res = "((LOWER(first_name) LIKE '%" + qr + "%' or LOWER(last_name) LIKE '%" + qr +
+                    "%' or LOWER(patronymic) LIKE '%" + qr + "%') OR (CONCAT(LOWER(last_name), ' ', " +
+                    "LOWER(first_name), ' ', LOWER(first_name))) LIKE '%" + qr + "%')";
         }
 
         return res;
