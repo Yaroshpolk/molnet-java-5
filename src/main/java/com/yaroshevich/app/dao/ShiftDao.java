@@ -21,51 +21,50 @@ public class ShiftDao {
 
 
     public List<Shift> getAll() throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        Statement statement = connection.createStatement();
+        try (Connection connection = DBConnector.getConnection()) {
+            Statement statement = connection.createStatement();
 
-        ShiftMapper mapper = new ShiftMapper();
-        List<Shift> resultList = mapper.map(statement.executeQuery("SELECT * FROM shifts"));
+            ShiftMapper mapper = new ShiftMapper();
+            List<Shift> resultList = mapper.map(statement.executeQuery("SELECT * FROM shifts"));
 
-        connection.close();
-        return resultList;
+            return resultList;
+        }
     }
 
-
     public Shift getById(int id) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(SHIFT_BY_ID_SQL);
-        statement.setInt(1, id);
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SHIFT_BY_ID_SQL);
+            statement.setInt(1, id);
 
-        ShiftMapper mapper = new ShiftMapper();
-        List<Shift> resultList = mapper.map(statement.executeQuery());
+            ShiftMapper mapper = new ShiftMapper();
+            List<Shift> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList.size() > 0 ? resultList.get(0) : null;
+            return resultList.size() > 0 ? resultList.get(0) : null;
+        }
     }
 
     public Shift getByTime(Shift shift) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(SHIFT_BY_TIME_SQL);
-        statement.setObject(1, LocalTime.parse(shift.getStart()));
-        statement.setObject(2, LocalTime.parse(shift.getEnd()));
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SHIFT_BY_TIME_SQL);
+            statement.setObject(1, LocalTime.parse(shift.getStart()));
+            statement.setObject(2, LocalTime.parse(shift.getEnd()));
 
-        ShiftMapper mapper = new ShiftMapper();
-        List<Shift> resultList = mapper.map(statement.executeQuery());
+            ShiftMapper mapper = new ShiftMapper();
+            List<Shift> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList.size() > 0 ? resultList.get(0) : null;
+            return resultList.size() > 0 ? resultList.get(0) : null;
+        }
     }
 
     public Shift add(Shift shift) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(ADD_SHIFT_SQL);
-        statement.setObject(1, LocalTime.parse(shift.getStart()));
-        statement.setObject(2, LocalTime.parse(shift.getEnd()));
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(ADD_SHIFT_SQL);
+            statement.setObject(1, LocalTime.parse(shift.getStart()));
+            statement.setObject(2, LocalTime.parse(shift.getEnd()));
 
-        statement.executeUpdate();
+            statement.executeUpdate();
 
-        connection.close();
-        return getByTime(shift);
+            return getByTime(shift);
+        }
     }
 }

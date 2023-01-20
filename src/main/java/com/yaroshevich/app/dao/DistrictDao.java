@@ -22,50 +22,49 @@ public class DistrictDao {
 
 
     public List<District> getAll() throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(DISTRICT_SQL);
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(DISTRICT_SQL);
 
-        DistrictMapper mapper = new DistrictMapper();
-        List<District> resultList = mapper.map(statement.executeQuery());
+            DistrictMapper mapper = new DistrictMapper();
+            List<District> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList;
+            return resultList;
+        }
     }
 
-
     public District getById(int id) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(DISTRICT_SQL + "WHERE districts.id = ?");
-        statement.setInt(1, id);
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(DISTRICT_SQL + "WHERE districts.id = ?");
+            statement.setInt(1, id);
 
-        DistrictMapper mapper = new DistrictMapper();
-        List<District> resultList = mapper.map(statement.executeQuery());
+            DistrictMapper mapper = new DistrictMapper();
+            List<District> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList.size() > 0 ? resultList.get(0) : null;
+            return resultList.size() > 0 ? resultList.get(0) : null;
+        }
     }
 
     public List<District> getDistricts() throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(
-                DISTRICT_SQL + "WHERE districts.parent_id IS NULL");
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(
+                    DISTRICT_SQL + "WHERE districts.parent_id IS NULL");
 
-        DistrictMapper mapper = new DistrictMapper();
-        List<District> resultList = mapper.map(statement.executeQuery());
+            DistrictMapper mapper = new DistrictMapper();
+            List<District> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList;
+            return resultList;
+        }
     }
 
     public List<District> getRegions() throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(
-                DISTRICT_SQL + "WHERE districts.parent_id  IS NOT NULL");
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(
+                    DISTRICT_SQL + "WHERE districts.parent_id  IS NOT NULL");
 
-        DistrictMapper mapper = new DistrictMapper();
-        List<District> resultList = mapper.map(statement.executeQuery());
+            DistrictMapper mapper = new DistrictMapper();
+            List<District> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList;
+            return resultList;
+        }
     }
 }

@@ -22,66 +22,66 @@ public class UserDao {
     private static final String SELECT_USERS_BY_LOGIN_SQL = " SELECT * FROM users WHERE login = ?";
 
     public User add(User user) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(ADD_USER_SQL,
-                PreparedStatement.RETURN_GENERATED_KEYS);
-        statement.setString(1, user.getLogin());
-        statement.setString(2, user.getPassword());
-        statement.setString(3, user.getName());
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(ADD_USER_SQL,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getName());
 
 
-        int res = statement.executeUpdate();
+            int res = statement.executeUpdate();
 
-        int id = 1;
+            int id = 1;
 
-        try (ResultSet rows = statement.getGeneratedKeys()) {
-            while (rows.next()) {
-                id = rows.getInt(1);
+            try (ResultSet rows = statement.getGeneratedKeys()) {
+                while (rows.next()) {
+                    id = rows.getInt(1);
+                }
             }
-        }
 
-        connection.close();
-        return getById(id);
+            return getById(id);
+        }
     }
 
     public User getById(int id) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(SELECT_USER_SQL);
-        statement.setInt(1, id);
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_USER_SQL);
+            statement.setInt(1, id);
 
-        UserMapper mapper = new UserMapper();
-        List<User> resultList = mapper.map(statement.executeQuery());
+            UserMapper mapper = new UserMapper();
+            List<User> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList.size() > 0 ? resultList.get(0) : null;
+            return resultList.size() > 0 ? resultList.get(0) : null;
+        }
     }
 
     public boolean isLoginAvailable(String login) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(SELECT_WITH_LOGINS_SQL);
-        statement.setString(1, login);
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_WITH_LOGINS_SQL);
+            statement.setString(1, login);
 
-        ResultSet resultSet = statement.executeQuery();
-        boolean res = false;
+            ResultSet resultSet = statement.executeQuery();
+            boolean res = false;
 
-        while (resultSet.next()) {
-            res = resultSet.getInt(1) <= 0;
+            while (resultSet.next()) {
+                res = resultSet.getInt(1) <= 0;
+            }
+
+            return res;
         }
-
-        connection.close();
-        return res;
     }
 
     public User getByLogin(String login) throws SQLException {
-        Connection connection = DBConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(SELECT_USERS_BY_LOGIN_SQL);
-        statement.setString(1, login);
+        try (Connection connection = DBConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_USERS_BY_LOGIN_SQL);
+            statement.setString(1, login);
 
-        UserMapper mapper = new UserMapper();
-        List<User> resultList = mapper.map(statement.executeQuery());
+            UserMapper mapper = new UserMapper();
+            List<User> resultList = mapper.map(statement.executeQuery());
 
-        connection.close();
-        return resultList.size() > 0 ? resultList.get(0) : null;
+            return resultList.size() > 0 ? resultList.get(0) : null;
+        }
     }
 
 }

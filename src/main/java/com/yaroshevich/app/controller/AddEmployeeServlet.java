@@ -47,7 +47,6 @@ public class AddEmployeeServlet extends HttpServlet {
 
             district = districtDao.getById(employeeDistrictId);
 
-
             if (!employeeStart.equals("") && !employeeEnd.equals("")) {
                 Shift shiftObj = new Shift(employeeStart, employeeEnd);
                 if (shiftDao.getByTime(shiftObj) != null) {
@@ -55,7 +54,6 @@ public class AddEmployeeServlet extends HttpServlet {
                 } else {
                     shift = shiftDao.add(shiftObj);
                 }
-
             }
 
             Address addressObj = new Address(employeeAddress, district);
