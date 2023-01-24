@@ -20,21 +20,33 @@
 %>
 <div class="content prof">
     <div class="profile">
-        <div class="profile__avatar">
-            <p class="profile__avatar-txt">Фото</p>
+        <div class="controls">
+            <a class="btn btn_blue back-btn" href="" target="_self">Назад</a>
         </div>
-        <div class="profile__info">
-            <p class="profile__name"><%= name %>
-            </p>
-            <ul class="profile__list">
-                <li class="profile__item">Адрес: <%= address %>
-                </li>
-                <li class="profile__item">График работы: <%= shift %>
-                </li>
-            </ul>
+        <div class="profile__wrapper">
+            <div class="profile__avatar">
+                <p class="profile__avatar-txt">Фото</p>
+            </div>
+            <div class="profile__info">
+                <p class="profile__name"><%= name %>
+                </p>
+                <ul class="profile__list">
+                    <li class="profile__item">Адрес: <%= address %>
+                    </li>
+                    <li class="profile__item">График работы: <%= shift %>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    let backBtn = document.querySelector(".back-btn");
 
+    backBtn.addEventListener("click", evt => {
+        evt.preventDefault();
+        history.back();
+    })
+</script>
 </body>
 </html>

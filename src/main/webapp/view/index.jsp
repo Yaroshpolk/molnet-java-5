@@ -139,7 +139,7 @@
                                 %>
                            href="/app/main?<%= newUrl +
                            (request.getParameterMap().size() - 1 > 0 ? "&page=" + i : "page=" + i)%>">
-                            <%= i %>
+                            <%= i + 1 %>
                         </a>
                     </li>
                     <% } %>
