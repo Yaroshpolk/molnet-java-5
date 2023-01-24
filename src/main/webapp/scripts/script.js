@@ -5,6 +5,9 @@ let openBtn = document.getElementById('openPopupBtn');
 
 let addForm = document.getElementById('addEmployeeForm');
 
+let downloadExcelBtn = document.getElementById("downloadExcelBtn");
+let filterForm = document.forms.namedItem("filterForm");
+
 const openPopup = (evt) => {
     evt.preventDefault();
     addForm.reset();
@@ -84,5 +87,11 @@ const formValidate = (evt) => {
 }
 
 addForm.addEventListener('submit', formValidate);
+
+downloadExcelBtn.addEventListener("click", evt => {
+    evt.preventDefault();
+    filterForm.action = downloadExcelBtn.href;
+    filterForm.submit();
+})
 
 

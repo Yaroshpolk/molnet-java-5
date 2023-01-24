@@ -21,11 +21,18 @@ public class DownloadExcelServlet extends HttpServlet {
         EmployeeExcelGenerator excelGenerator = new EmployeeExcelGenerator();
         String fileName = PropertiesHelper.properties.getProperty("excel.fileName");
 
+        int districtId = Integer.parseInt(request.getParameter("filter_district"));
+        int regionId = Integer.parseInt(request.getParameter("filter_region"));
+        int sortType = Integer.parseInt(request.getParameter("filter_sortType"));
+        String search = request.getParameter("search_field");
+
+        FilterDataObject filterData = new FilterDataObject(districtId, regionId, sortType, search);
+
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setHeader("Content-Disposition", String.format("attachment; filename=%s.xlsx", fileName));
 
         try (ServletOutputStream out = response.getOutputStream()) {
-            excelGenerator.generateExcel(out, (FilterDataObject) request.getSession().getAttribute("filterData"));
+            excelGenerator.generateExcel(out, filterData);
         }
 
     }

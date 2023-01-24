@@ -147,7 +147,7 @@
             </div>
             <div class="employees__footer">
                 <a class="btn btn_blue" href="/app/charts" target="_self">Графики</a>
-                <a class="btn btn_blue" href="/app/downloadExcel" target="_blank">Скачать excel файл</a>
+                <a class="btn btn_blue" href="/app/downloadExcel" target="_blank" id="downloadExcelBtn">Скачать excel файл</a>
             </div>
         </div>
     </div>
